@@ -2,6 +2,39 @@ const fs = require('fs');
 const https = require('https');
 const path = require('path');
 
+// Simple geocoding function using Nominatim (OpenStreetMap)
+async function geocodeLocation(location) {
+    if (!location || location.trim() === '') return null;
+    
+    try {
+        const query = encodeURIComponent(location.trim());
+        const url = `https://nominatim.openstreetmap.org/search?format=json&q=${query}&limit=1`;
+        
+        const response = await new Promise((resolve, reject) => {
+            https.get(url, { headers: { 'User-Agent': 'GitHub-Developers-Map' } }, (res) => {
+                let data = '';
+                res.on('data', chunk => data += chunk);
+                res.on('end', () => resolve({ data, status: res.statusCode }));
+            }).on('error', reject);
+        });
+        
+        if (response.status === 200 && response.data) {
+            const results = JSON.parse(response.data);
+            if (results && results.length > 0) {
+                const result = results[0];
+                return {
+                    lat: parseFloat(result.lat),
+                    lng: parseFloat(result.lon)
+                };
+            }
+        }
+    } catch (error) {
+        console.log(`❌ Geocoding failed for "${location}": ${error.message}`);
+    }
+    
+    return null;
+}
+
 // GitHub API configuration
 const GITHUB_API_BASE = 'https://api.github.com';
 
@@ -336,12 +369,17 @@ async function fetchDevelopersForQuery(query, existingLogins, maxPages = CONFIG.
                     
                     // Only include developers with location and minimum followers
                     if (userDetails.location && userDetails.followers >= CONFIG.minFollowers) {
-                        developers.push({
+                        // Geocode the location to get coordinates
+                        console.log(`      🌍 Geocoding "${userDetails.location}"...`);
+                        const coordinates = await geocodeLocation(userDetails.location);
+                        
+                        const developer = {
                             login: userDetails.login,
                             name: userDetails.name,
                             avatar_url: userDetails.avatar_url,
                             html_url: userDetails.html_url,
                             location: userDetails.location,
+                            coordinates: coordinates, // Add geocoded coordinates
                             company: userDetails.company,
                             bio: userDetails.bio,
                             followers: userDetails.followers,
@@ -351,10 +389,16 @@ async function fetchDevelopersForQuery(query, existingLogins, maxPages = CONFIG.
                             created_at: userDetails.created_at,
                             updated_at: userDetails.updated_at,
                             downloaded_at: new Date().toISOString()
-                        });
+                        };
                         
+                        developers.push(developer);
                         existingLogins.add(userDetails.login);
-                        console.log(`      ✓ Added ${userDetails.login} (${userDetails.followers} followers, ${userDetails.location})`);
+                        
+                        const coordsStr = coordinates ? `${coordinates.lat.toFixed(4)}, ${coordinates.lng.toFixed(4)}` : 'no coords';
+                        console.log(`      ✅ Added ${userDetails.login} (${userDetails.followers} followers, ${userDetails.location}) [${coordsStr}]`);
+                        
+                        // Add small delay between geocoding requests to be respectful
+                        await delay(500);
                     } else {
                         console.log(`      ✗ Skipped ${userDetails.login} (no location or <${CONFIG.minFollowers} followers)`);
                     }
