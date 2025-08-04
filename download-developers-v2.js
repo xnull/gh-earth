@@ -2,6 +2,83 @@ const fs = require('fs');
 const https = require('https');
 const path = require('path');
 
+// Extract social networks from GitHub profile
+function extractSocialLinks(userDetails) {
+    const social = {};
+    
+    // GitHub provides these fields directly
+    if (userDetails.blog) {
+        const blog = userDetails.blog.startsWith('http') ? userDetails.blog : `https://${userDetails.blog}`;
+        social.website = blog;
+        
+        // Try to detect social networks from website URL
+        if (blog.includes('twitter.com') || blog.includes('x.com')) {
+            social.twitter = blog;
+        } else if (blog.includes('linkedin.com')) {
+            social.linkedin = blog;
+        } else if (blog.includes('youtube.com') || blog.includes('youtu.be')) {
+            social.youtube = blog;
+        }
+    }
+    
+    if (userDetails.twitter_username) {
+        social.twitter = `https://twitter.com/${userDetails.twitter_username}`;
+    }
+    
+    // Parse bio for social links
+    if (userDetails.bio) {
+        const bio = userDetails.bio;
+        
+        // Twitter patterns
+        const twitterMatch = bio.match(/(?:twitter\.com\/|@)([a-zA-Z0-9_]+)/i);
+        if (twitterMatch && !social.twitter) {
+            social.twitter = `https://twitter.com/${twitterMatch[1]}`;
+        }
+        
+        // LinkedIn patterns
+        const linkedinMatch = bio.match(/linkedin\.com\/in\/([a-zA-Z0-9-]+)/i);
+        if (linkedinMatch) {
+            social.linkedin = `https://linkedin.com/in/${linkedinMatch[1]}`;
+        }
+        
+        // YouTube patterns
+        const youtubeMatch = bio.match(/(?:youtube\.com\/(?:c\/|channel\/|@)|youtu\.be\/)([a-zA-Z0-9_-]+)/i);
+        if (youtubeMatch) {
+            social.youtube = `https://youtube.com/@${youtubeMatch[1]}`;
+        }
+    }
+    
+    return social;
+}
+
+// Get additional GitHub stats (stars, etc.)
+async function getGitHubStats(username) {
+    try {
+        const reposResponse = await apiRequest(`/users/${username}/repos?per_page=100&sort=updated`);
+        const repos = reposResponse.data || [];
+        
+        const totalStars = repos.reduce((sum, repo) => sum + (repo.stargazers_count || 0), 0);
+        const totalForks = repos.reduce((sum, repo) => sum + (repo.forks_count || 0), 0);
+        const languages = repos.map(repo => repo.language).filter(Boolean);
+        const topLanguages = [...new Set(languages)].slice(0, 5);
+        
+        return {
+            total_stars: totalStars,
+            total_forks: totalForks,
+            top_languages: topLanguages,
+            public_repos_count: repos.length
+        };
+    } catch (error) {
+        console.log(`Failed to get stats for ${username}: ${error.message}`);
+        return {
+            total_stars: 0,
+            total_forks: 0,
+            top_languages: [],
+            public_repos_count: 0
+        };
+    }
+}
+
 // Simple geocoding function using Nominatim (OpenStreetMap)
 async function geocodeLocation(location) {
     if (!location || location.trim() === '') return null;
@@ -373,6 +450,14 @@ async function fetchDevelopersForQuery(query, existingLogins, maxPages = CONFIG.
                         console.log(`      🌍 Geocoding "${userDetails.location}"...`);
                         const coordinates = await geocodeLocation(userDetails.location);
                         
+                        // Extract social links
+                        console.log(`      🔗 Extracting social links...`);
+                        const social = extractSocialLinks(userDetails);
+                        
+                        // Get GitHub stats (stars, languages, etc.)
+                        console.log(`      ⭐ Fetching GitHub stats...`);
+                        const stats = await getGitHubStats(userDetails.login);
+                        
                         const developer = {
                             login: userDetails.login,
                             name: userDetails.name,
@@ -382,23 +467,32 @@ async function fetchDevelopersForQuery(query, existingLogins, maxPages = CONFIG.
                             coordinates: coordinates, // Add geocoded coordinates
                             company: userDetails.company,
                             bio: userDetails.bio,
+                            blog: userDetails.blog,
                             followers: userDetails.followers,
                             following: userDetails.following,
                             public_repos: userDetails.public_repos,
                             public_gists: userDetails.public_gists,
                             created_at: userDetails.created_at,
                             updated_at: userDetails.updated_at,
-                            downloaded_at: new Date().toISOString()
+                            downloaded_at: new Date().toISOString(),
+                            
+                            // Enhanced data
+                            social: social,
+                            total_stars: stats.total_stars,
+                            total_forks: stats.total_forks,
+                            top_languages: stats.top_languages,
+                            public_repos_count: stats.public_repos_count
                         };
                         
                         developers.push(developer);
                         existingLogins.add(userDetails.login);
                         
                         const coordsStr = coordinates ? `${coordinates.lat.toFixed(4)}, ${coordinates.lng.toFixed(4)}` : 'no coords';
-                        console.log(`      ✅ Added ${userDetails.login} (${userDetails.followers} followers, ${userDetails.location}) [${coordsStr}]`);
+                        const socialStr = Object.keys(social).length > 0 ? `social: ${Object.keys(social).join(', ')}` : 'no social';
+                        console.log(`      ✅ Added ${userDetails.login} (${userDetails.followers} followers, ⭐${stats.total_stars} stars, ${socialStr}) [${coordsStr}]`);
                         
-                        // Add small delay between geocoding requests to be respectful
-                        await delay(500);
+                        // Add small delay between requests to be respectful
+                        await delay(300);
                     } else {
                         console.log(`      ✗ Skipped ${userDetails.login} (no location or <${CONFIG.minFollowers} followers)`);
                     }

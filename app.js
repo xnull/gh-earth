@@ -764,6 +764,173 @@ function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+// List view functionality
+let currentView = 'map'; // 'map' or 'list'
+let currentSort = 'total_stars';
+let searchQuery = '';
+
+function toggleView() {
+    const mapContainer = document.getElementById('mapContainer');
+    const listContainer = document.getElementById('listContainer');
+    const toggleBtn = document.getElementById('toggleViewBtn');
+    
+    if (currentView === 'map') {
+        currentView = 'list';
+        mapContainer.classList.add('hidden');
+        listContainer.classList.remove('hidden');
+        toggleBtn.textContent = '🗺️ Map View';
+        renderDeveloperList();
+    } else {
+        currentView = 'map';
+        mapContainer.classList.remove('hidden');
+        listContainer.classList.add('hidden');
+        toggleBtn.textContent = '📋 List View';
+    }
+}
+
+function renderDeveloperList() {
+    const developerList = document.getElementById('developerList');
+    
+    if (!developerList) return;
+    
+    // Get all developers and sort them
+    const developers = Array.from(allDevelopers.values());
+    
+    // Filter by search query
+    const filteredDevelopers = developers.filter(dev => {
+        if (!searchQuery) return true;
+        const query = searchQuery.toLowerCase();
+        return (
+            (dev.name && dev.name.toLowerCase().includes(query)) ||
+            (dev.login && dev.login.toLowerCase().includes(query)) ||
+            (dev.bio && dev.bio.toLowerCase().includes(query)) ||
+            (dev.location && dev.location.toLowerCase().includes(query)) ||
+            (dev.company && dev.company.toLowerCase().includes(query))
+        );
+    });
+    
+    // Sort developers
+    filteredDevelopers.sort((a, b) => {
+        const aValue = a[currentSort] || 0;
+        const bValue = b[currentSort] || 0;
+        return bValue - aValue; // Descending order
+    });
+    
+    // Render the list
+    developerList.innerHTML = filteredDevelopers.map((dev, index) => {
+        const socialLinks = dev.social || {};
+        const languages = dev.top_languages || [];
+        
+        return `
+            <div class="developer-item">
+                <div class="rank-badge">#${index + 1}</div>
+                
+                <div class="developer-header">
+                    <img class="developer-avatar" src="${dev.avatar_url}" alt="${dev.name || dev.login}" />
+                    <div class="developer-info">
+                        <h3>${dev.name || dev.login}</h3>
+                        <div class="username">@${dev.login}</div>
+                        <div class="location">📍 ${dev.location || 'Unknown'}</div>
+                    </div>
+                </div>
+                
+                <div class="developer-stats">
+                    <div class="stat-item">
+                        <span class="stat-value">⭐${formatNumber(dev.total_stars || 0)}</span>
+                        <span class="stat-label">stars</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">👥${formatNumber(dev.followers || 0)}</span>
+                        <span class="stat-label">followers</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">📁${dev.public_repos || 0}</span>
+                        <span class="stat-label">repos</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">🍴${formatNumber(dev.total_forks || 0)}</span>
+                        <span class="stat-label">forks</span>
+                    </div>
+                </div>
+                
+                ${dev.bio ? `<div class="developer-bio">${dev.bio}</div>` : ''}
+                
+                ${languages.length > 0 ? `
+                    <div class="developer-languages">
+                        ${languages.map(lang => `<span class="language-tag">${lang}</span>`).join('')}
+                    </div>
+                ` : ''}
+                
+                <div class="developer-social">
+                    <a href="${dev.html_url}" target="_blank" class="social-link github">
+                        <span>🐙</span> GitHub
+                    </a>
+                    ${socialLinks.twitter ? `
+                        <a href="${socialLinks.twitter}" target="_blank" class="social-link twitter">
+                            <span>🐦</span> Twitter
+                        </a>
+                    ` : ''}
+                    ${socialLinks.linkedin ? `
+                        <a href="${socialLinks.linkedin}" target="_blank" class="social-link linkedin">
+                            <span>💼</span> LinkedIn
+                        </a>
+                    ` : ''}
+                    ${socialLinks.youtube ? `
+                        <a href="${socialLinks.youtube}" target="_blank" class="social-link youtube">
+                            <span>📺</span> YouTube
+                        </a>
+                    ` : ''}
+                    ${socialLinks.website && !socialLinks.twitter && !socialLinks.linkedin && !socialLinks.youtube ? `
+                        <a href="${socialLinks.website}" target="_blank" class="social-link website">
+                            <span>🌐</span> Website
+                        </a>
+                    ` : ''}
+                </div>
+            </div>
+        `;
+    }).join('');
+    
+    console.log(`📋 Rendered ${filteredDevelopers.length} developers in list view`);
+}
+
+function formatNumber(num) {
+    if (num >= 1000000) {
+        return (num / 1000000).toFixed(1) + 'M';
+    } else if (num >= 1000) {
+        return (num / 1000).toFixed(1) + 'K';
+    }
+    return num.toString();
+}
+
+function setupListControls() {
+    const toggleBtn = document.getElementById('toggleViewBtn');
+    const sortSelect = document.getElementById('sortSelect');
+    const searchInput = document.getElementById('searchInput');
+    
+    if (toggleBtn) {
+        toggleBtn.addEventListener('click', toggleView);
+    }
+    
+    if (sortSelect) {
+        sortSelect.value = currentSort;
+        sortSelect.addEventListener('change', (e) => {
+            currentSort = e.target.value;
+            if (currentView === 'list') {
+                renderDeveloperList();
+            }
+        });
+    }
+    
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            searchQuery = e.target.value;
+            if (currentView === 'list') {
+                renderDeveloperList();
+            }
+        });
+    }
+}
+
 // Initialize everything when page loads
 document.addEventListener('DOMContentLoaded', async () => {
     console.log('🌍 GitHub Developers World Map - Progressive Loading Edition');
@@ -780,6 +947,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (refreshBtn) {
             refreshBtn.addEventListener('click', refreshData);
         }
+        
+        // Setup list view controls
+        setupListControls();
         
         // Add instructions
         const info = document.createElement('div');

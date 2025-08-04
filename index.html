@@ -20,12 +20,35 @@
         
         <div class="controls">
             <button id="refreshBtn" class="btn">🔄 Refresh Data</button>
+            <button id="toggleViewBtn" class="btn">📋 List View</button>
             <div class="stats">
                 <span id="developerCount">Loading...</span>
             </div>
         </div>
         
-        <div id="map"></div>
+        <div id="mapContainer" class="view-container">
+            <div id="map"></div>
+        </div>
+        
+        <div id="listContainer" class="view-container hidden">
+            <div class="list-controls">
+                <div class="sort-options">
+                    Sort by:
+                    <select id="sortSelect">
+                        <option value="total_stars">⭐ Total Stars</option>
+                        <option value="followers">👥 Followers</option>
+                        <option value="public_repos">📁 Repositories</option>
+                        <option value="total_forks">🍴 Total Forks</option>
+                    </select>
+                </div>
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="🔍 Search developers...">
+                </div>
+            </div>
+            <div id="developerList" class="developer-list">
+                <!-- Developer items will be populated by JavaScript -->
+            </div>
+        </div>
         
         <div class="loading" id="loading">
             <div class="spinner"></div>
@@ -37,6 +60,6 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     
     <!-- Our JS -->
-    <script src="app.js?v=11"></script>
+    <script src="app.js?v=12"></script>
 </body>
 </html>
