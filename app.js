@@ -167,6 +167,23 @@ async function loadInitialData() {
                     });
                     loadedBatches.add(0);
                     console.log(`✅ Loaded ${developers.length} developers from single file`);
+                    
+                    // Force initial geocoding for fallback data
+                    console.log('🌍 Starting initial geocoding for fallback data...');
+                    let geocoded = 0;
+                    for (const dev of developers.slice(0, 50)) { // Geocode first 50
+                        if (dev.location && !dev.coordinates) {
+                            const coords = await geocodeLocation(dev.location);
+                            if (coords) {
+                                dev.coordinates = coords;
+                                geocoded++;
+                            }
+                            if (geocoded % 5 === 0) {
+                                await delay(100); // Small delay every 5 geocoding requests
+                            }
+                        }
+                    }
+                    console.log(`✅ Geocoded ${geocoded} locations`);
                 }
             } catch (e) {
                 console.error('❌ Failed to load fallback data:', e);
@@ -234,21 +251,29 @@ async function onMapChange() {
 // Get developers in current map bounds
 function getDevelopersInBounds(bounds) {
     const developersInBounds = [];
-    const expandedBounds = bounds.pad(0.1); // Add 10% padding
+    const expandedBounds = bounds.pad(0.2); // Add 20% padding
+    
+    // If we have very few developers loaded (< 100), show all of them regardless of bounds
+    // This helps with the initial load when using fallback data
+    const totalDevelopers = allDevelopers.size;
+    const showAll = totalDevelopers < 100;
     
     for (const developer of allDevelopers.values()) {
         if (developer.coordinates) {
             const latLng = L.latLng(developer.coordinates.lat, developer.coordinates.lng);
-            if (expandedBounds.contains(latLng)) {
+            if (showAll || expandedBounds.contains(latLng)) {
                 developersInBounds.push(developer);
             }
+        } else if (developer.location) {
+            // Include developers without coordinates but with location for geocoding
+            developersInBounds.push(developer);
         }
     }
     
     // Sort by followers and limit
     return developersInBounds
         .sort((a, b) => b.followers - a.followers)
-        .slice(0, LOADING_CONFIG.developersPerView);
+        .slice(0, showAll ? Math.min(totalDevelopers, 200) : LOADING_CONFIG.developersPerView);
 }
 
 // Geocode location string to coordinates
@@ -258,17 +283,58 @@ async function geocodeLocation(location) {
     }
     
     try {
-        // First try to match with major cities
-        const normalizedLocation = location.toLowerCase();
+        // First try to match with major cities (more aggressive matching)
+        const normalizedLocation = location.toLowerCase().trim();
+        
+        // Direct city name matches
         for (const city of MAJOR_LOCATIONS) {
-            if (city.aliases.some(alias => normalizedLocation.includes(alias))) {
-                const coords = { lat: city.lat, lng: city.lng };
+            for (const alias of city.aliases) {
+                if (normalizedLocation.includes(alias.toLowerCase()) || 
+                    alias.toLowerCase().includes(normalizedLocation)) {
+                    console.log(`🎯 Matched "${location}" to ${city.name}`);
+                    const coords = { lat: city.lat, lng: city.lng };
+                    locationCache.set(location, coords);
+                    return coords;
+                }
+            }
+        }
+        
+        // Common location patterns
+        const locationMappings = {
+            'ca': { lat: 37.7749, lng: -122.4194 }, // California -> San Francisco
+            'usa': { lat: 40.7128, lng: -74.0060 }, // USA -> New York
+            'us': { lat: 40.7128, lng: -74.0060 },  // US -> New York
+            'uk': { lat: 51.5074, lng: -0.1278 },   // UK -> London
+            'canada': { lat: 43.6532, lng: -79.3832 }, // Canada -> Toronto
+            'brasil': { lat: -23.5505, lng: -46.6333 }, // Brasil -> São Paulo
+            'brazil': { lat: -23.5505, lng: -46.6333 }, // Brazil -> São Paulo
+            'china': { lat: 39.9042, lng: 116.4074 }, // China -> Beijing
+            'india': { lat: 12.9716, lng: 77.5946 }, // India -> Bangalore
+            'japan': { lat: 35.6762, lng: 139.6503 }, // Japan -> Tokyo
+            'germany': { lat: 52.5200, lng: 13.4050 }, // Germany -> Berlin
+            'france': { lat: 48.8566, lng: 2.3522 }, // France -> Paris
+            'australia': { lat: -33.8688, lng: 151.2093 }, // Australia -> Sydney
+            'netherlands': { lat: 52.3676, lng: 4.9041 }, // Netherlands -> Amsterdam
+            'switzerland': { lat: 47.3769, lng: 8.5417 }, // Switzerland -> Zurich
+            'sweden': { lat: 59.3293, lng: 18.0686 }, // Sweden -> Stockholm
+            'norway': { lat: 59.9139, lng: 10.7522 }, // Norway -> Oslo
+            'remote': { lat: 37.7749, lng: -122.4194 }, // Remote -> San Francisco
+            'worldwide': { lat: 37.7749, lng: -122.4194 }, // Worldwide -> San Francisco
+            'everywhere': { lat: 37.7749, lng: -122.4194 } // Everywhere -> San Francisco
+        };
+        
+        for (const [pattern, coords] of Object.entries(locationMappings)) {
+            if (normalizedLocation.includes(pattern)) {
+                console.log(`🌍 Mapped "${location}" to default location`);
                 locationCache.set(location, coords);
                 return coords;
             }
         }
         
-        // If not found in major cities, use Nominatim
+        // If not found in major cities, use Nominatim (with delay)
+        console.log(`🔍 Geocoding "${location}" via Nominatim...`);
+        await delay(200); // Respect rate limits
+        
         const response = await fetch(
             `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(location)}&limit=1`
         );
@@ -284,14 +350,16 @@ async function geocodeLocation(location) {
                 lat: parseFloat(data[0].lat),
                 lng: parseFloat(data[0].lon)
             };
+            console.log(`✅ Geocoded "${location}" to [${coords.lat}, ${coords.lng}]`);
             locationCache.set(location, coords);
             return coords;
         }
         
     } catch (error) {
-        console.error(`❌ Geocoding error for "${location}":`, error);
+        console.error(`❌ Geocoding error for "${location}":`, error.message);
     }
     
+    console.log(`❌ Could not geocode "${location}"`);
     locationCache.set(location, null);
     return null;
 }
