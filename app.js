@@ -1,7 +1,6 @@
 // Initialize map
 let map;
 let markers = [];
-let markerClusterGroup;
 let developerCache = new Map();
 let locationCache = new Map();
 let currentSearches = new Set();
@@ -48,13 +47,6 @@ function initMap() {
         attribution: '© OpenStreetMap contributors',
         maxZoom: 18
     }).addTo(map);
-    
-    // Initialize marker cluster group for better performance
-    markerClusterGroup = L.markerClusterGroup({
-        chunkedLoading: true,
-        showCoverageOnHover: false
-    });
-    map.addLayer(markerClusterGroup);
     
     // Add map event listeners
     map.on('moveend', debounce(onMapMoveEnd, 1000));
@@ -284,7 +276,7 @@ async function geocodeLocation(location) {
 async function addDevelopersToMap(developers, clearExisting = false) {
     if (clearExisting) {
         // Clear existing markers
-        markerClusterGroup.clearLayers();
+        markers.forEach(marker => map.removeLayer(marker));
         markers = [];
     }
     
@@ -312,9 +304,8 @@ async function addDevelopersToMap(developers, clearExisting = false) {
                 const offset = index * 0.0001;
                 const marker = L.marker([coords.lat + offset, coords.lng + offset], {
                     developerId: dev.login
-                }).bindPopup(createPopupContent(dev));
+                }).bindPopup(createPopupContent(dev)).addTo(map);
                 
-                markerClusterGroup.addLayer(marker);
                 markers.push(marker);
             });
         }
@@ -354,7 +345,7 @@ function showLoading(show) {
 
 // Clear all markers and cache
 function clearAll() {
-    markerClusterGroup.clearLayers();
+    markers.forEach(marker => map.removeLayer(marker));
     markers = [];
     developerCache.clear();
     document.getElementById('developerCount').textContent = '0 developers displayed';
