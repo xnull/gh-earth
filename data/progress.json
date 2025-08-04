@@ -1,0 +1,23 @@
+{
+  "currentBatch": 0,
+  "processedQueries": {
+    "followers:followers:>100000": {
+      "processed_at": "2025-08-04T21:14:11.571Z",
+      "developers_found": 4
+    },
+    "followers:followers:50000..100000": {
+      "processed_at": "2025-08-04T21:14:19.278Z",
+      "developers_found": 11
+    },
+    "followers:followers:20000..50000": {
+      "processed_at": "2025-08-04T21:14:52.548Z",
+      "developers_found": 71
+    },
+    "followers:followers:10000..20000": {
+      "processed_at": "2025-08-04T21:16:25.574Z",
+      "developers_found": 207
+    }
+  },
+  "totalDevelopers": 293,
+  "lastUpdate": "2025-08-04T21:16:25.574Z"
+}
