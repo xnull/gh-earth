@@ -436,7 +436,11 @@ async function geocodeLocation(location) {
             'localhost': { lat: 37.7749, lng: -122.4194 },
             'undefined': { lat: 37.7749, lng: -122.4194 },
             'null': { lat: 37.7749, lng: -122.4194 },
-            '~': { lat: 37.7749, lng: -122.4194 } // Home directory joke -> SF
+            '~': { lat: 37.7749, lng: -122.4194 }, // Home directory joke -> SF
+            'your heart': { lat: 37.7749, lng: -122.4194 }, // Funny location -> SF
+            'ghent': { lat: 51.0543, lng: 3.7174 }, // Ghent, Belgium
+            'são paulo': { lat: -23.5505, lng: -46.6333 }, // São Paulo, Brazil
+            'sao paulo': { lat: -23.5505, lng: -46.6333 } // São Paulo, Brazil (no accent)
         };
         
         for (const [pattern, coords] of Object.entries(locationMappings)) {
