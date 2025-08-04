@@ -136,3 +136,32 @@ header p {
 .developer-popup .github-link:hover {
     text-decoration: underline;
 }
+
+/* Map info styles */
+.map-info {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(22, 27, 34, 0.9);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    border: 1px solid #30363d;
+    font-size: 0.875rem;
+    z-index: 10;
+}
+
+.map-info p {
+    margin: 0.25rem 0;
+    color: #c9d1d9;
+}
+
+/* Marker cluster styles */
+.marker-cluster {
+    background-color: rgba(35, 134, 54, 0.6);
+}
+
+.marker-cluster div {
+    background-color: rgba(35, 134, 54, 0.8);
+    color: white;
+}
