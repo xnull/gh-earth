@@ -304,7 +304,86 @@ async function geocodeLocation(location) {
             }
         }
         
-        // Extended location mappings for better coverage
+        // Try to extract city names from complex locations FIRST (before countries/states)
+        const cityPatterns = {
+            // Major cities that might be in complex addresses
+            'san francisco': { lat: 37.7749, lng: -122.4194 },
+            'new york': { lat: 40.7128, lng: -74.0060 },
+            'london': { lat: 51.5074, lng: -0.1278 },
+            'berlin': { lat: 52.5200, lng: 13.4050 },
+            'tokyo': { lat: 35.6762, lng: 139.6503 },
+            'paris': { lat: 48.8566, lng: 2.3522 },
+            'seattle': { lat: 47.6062, lng: -122.3321 },
+            'boston': { lat: 42.3601, lng: -71.0589 },
+            'chicago': { lat: 41.8781, lng: -87.6298 },
+            'austin': { lat: 30.2672, lng: -97.7431 },
+            'toronto': { lat: 43.6532, lng: -79.3832 },
+            'vancouver': { lat: 49.2827, lng: -123.1207 },
+            'sydney': { lat: -33.8688, lng: 151.2093 },
+            'melbourne': { lat: -37.8136, lng: 144.9631 },
+            'amsterdam': { lat: 52.3676, lng: 4.9041 },
+            'stockholm': { lat: 59.3293, lng: 18.0686 },
+            'copenhagen': { lat: 55.6761, lng: 12.5683 },
+            'helsinki': { lat: 60.1699, lng: 24.9384 },
+            'oslo': { lat: 59.9139, lng: 10.7522 },
+            'zurich': { lat: 47.3769, lng: 8.5417 },
+            'vienna': { lat: 48.2082, lng: 16.3738 },
+            'madrid': { lat: 40.4168, lng: -3.7038 },
+            'barcelona': { lat: 41.3851, lng: 2.1734 },
+            'rome': { lat: 41.9028, lng: 12.4964 },
+            'milan': { lat: 45.4642, lng: 9.1900 },
+            'munich': { lat: 48.1351, lng: 11.5820 },
+            'hamburg': { lat: 53.5511, lng: 9.9937 },
+            'cologne': { lat: 50.9375, lng: 6.9603 },
+            'frankfurt': { lat: 50.1109, lng: 8.6821 },
+            'moscow': { lat: 55.7558, lng: 37.6173 },
+            'st petersburg': { lat: 59.9311, lng: 30.3609 },
+            'warsaw': { lat: 52.2297, lng: 21.0122 },
+            'prague': { lat: 50.0755, lng: 14.4378 },
+            'budapest': { lat: 47.4979, lng: 19.0402 },
+            'bucharest': { lat: 44.4268, lng: 26.1025 },
+            'sofia': { lat: 42.6977, lng: 23.3219 },
+            'athens': { lat: 37.9838, lng: 23.7275 },
+            'istanbul': { lat: 41.0082, lng: 28.9784 },
+            'ankara': { lat: 39.9334, lng: 32.8597 },
+            'tel aviv': { lat: 32.0853, lng: 34.7818 },
+            'jerusalem': { lat: 31.7683, lng: 35.2137 },
+            'dubai': { lat: 25.2048, lng: 55.2708 },
+            'mumbai': { lat: 19.0760, lng: 72.8777 },
+            'delhi': { lat: 28.7041, lng: 77.1025 },
+            'bangalore': { lat: 12.9716, lng: 77.5946 },
+            'bengaluru': { lat: 12.9716, lng: 77.5946 },
+            'hyderabad': { lat: 17.3850, lng: 78.4867 },
+            'chennai': { lat: 13.0827, lng: 80.2707 },
+            'pune': { lat: 18.5204, lng: 73.8567 },
+            'beijing': { lat: 39.9042, lng: 116.4074 },
+            'shanghai': { lat: 31.2304, lng: 121.4737 },
+            'shenzhen': { lat: 22.5431, lng: 114.0579 },
+            'guangzhou': { lat: 23.1291, lng: 113.2644 },
+            'hangzhou': { lat: 30.2741, lng: 120.1551 },
+            'seoul': { lat: 37.5665, lng: 126.9780 },
+            'busan': { lat: 35.1796, lng: 129.0756 },
+            'singapore': { lat: 1.3521, lng: 103.8198 },
+            'bangkok': { lat: 13.7563, lng: 100.5018 },
+            'jakarta': { lat: -6.2088, lng: 106.8456 },
+            'manila': { lat: 14.5995, lng: 120.9842 },
+            'kuala lumpur': { lat: 3.1390, lng: 101.6869 },
+            'ho chi minh': { lat: 10.8231, lng: 106.6297 },
+            'hanoi': { lat: 21.0285, lng: 105.8542 },
+            'taipei': { lat: 25.0330, lng: 121.5654 },
+            'hong kong': { lat: 22.3193, lng: 114.1694 },
+            'macau': { lat: 22.1987, lng: 113.5439 }
+        };
+        
+        for (const [cityName, coords] of Object.entries(cityPatterns)) {
+            if (normalizedLocation.includes(cityName)) {
+                console.log(`🎯 Found city "${cityName}" in "${location}"`);
+                locationCache.set(location, coords);
+                return coords;
+            }
+        }
+        
+        // Extended location mappings for countries/states (after cities)
         const locationMappings = {
             // Countries/Regions
             'usa': { lat: 40.7128, lng: -74.0060 }, // USA -> New York
@@ -455,84 +534,6 @@ async function geocodeLocation(location) {
         // Instead, use a fallback location based on common patterns
         console.log(`🔍 Using fallback geocoding for "${location}"`);
         
-        // Try to extract city names from complex locations
-        const cityPatterns = {
-            // Major cities that might be in complex addresses
-            'san francisco': { lat: 37.7749, lng: -122.4194 },
-            'new york': { lat: 40.7128, lng: -74.0060 },
-            'london': { lat: 51.5074, lng: -0.1278 },
-            'berlin': { lat: 52.5200, lng: 13.4050 },
-            'tokyo': { lat: 35.6762, lng: 139.6503 },
-            'paris': { lat: 48.8566, lng: 2.3522 },
-            'seattle': { lat: 47.6062, lng: -122.3321 },
-            'boston': { lat: 42.3601, lng: -71.0589 },
-            'chicago': { lat: 41.8781, lng: -87.6298 },
-            'austin': { lat: 30.2672, lng: -97.7431 },
-            'toronto': { lat: 43.6532, lng: -79.3832 },
-            'vancouver': { lat: 49.2827, lng: -123.1207 },
-            'sydney': { lat: -33.8688, lng: 151.2093 },
-            'melbourne': { lat: -37.8136, lng: 144.9631 },
-            'amsterdam': { lat: 52.3676, lng: 4.9041 },
-            'stockholm': { lat: 59.3293, lng: 18.0686 },
-            'copenhagen': { lat: 55.6761, lng: 12.5683 },
-            'helsinki': { lat: 60.1699, lng: 24.9384 },
-            'oslo': { lat: 59.9139, lng: 10.7522 },
-            'zurich': { lat: 47.3769, lng: 8.5417 },
-            'vienna': { lat: 48.2082, lng: 16.3738 },
-            'madrid': { lat: 40.4168, lng: -3.7038 },
-            'barcelona': { lat: 41.3851, lng: 2.1734 },
-            'rome': { lat: 41.9028, lng: 12.4964 },
-            'milan': { lat: 45.4642, lng: 9.1900 },
-            'munich': { lat: 48.1351, lng: 11.5820 },
-            'hamburg': { lat: 53.5511, lng: 9.9937 },
-            'cologne': { lat: 50.9375, lng: 6.9603 },
-            'frankfurt': { lat: 50.1109, lng: 8.6821 },
-            'moscow': { lat: 55.7558, lng: 37.6173 },
-            'st petersburg': { lat: 59.9311, lng: 30.3609 },
-            'warsaw': { lat: 52.2297, lng: 21.0122 },
-            'prague': { lat: 50.0755, lng: 14.4378 },
-            'budapest': { lat: 47.4979, lng: 19.0402 },
-            'bucharest': { lat: 44.4268, lng: 26.1025 },
-            'sofia': { lat: 42.6977, lng: 23.3219 },
-            'athens': { lat: 37.9838, lng: 23.7275 },
-            'istanbul': { lat: 41.0082, lng: 28.9784 },
-            'ankara': { lat: 39.9334, lng: 32.8597 },
-            'tel aviv': { lat: 32.0853, lng: 34.7818 },
-            'jerusalem': { lat: 31.7683, lng: 35.2137 },
-            'dubai': { lat: 25.2048, lng: 55.2708 },
-            'mumbai': { lat: 19.0760, lng: 72.8777 },
-            'delhi': { lat: 28.7041, lng: 77.1025 },
-            'bangalore': { lat: 12.9716, lng: 77.5946 },
-            'bengaluru': { lat: 12.9716, lng: 77.5946 },
-            'hyderabad': { lat: 17.3850, lng: 78.4867 },
-            'chennai': { lat: 13.0827, lng: 80.2707 },
-            'pune': { lat: 18.5204, lng: 73.8567 },
-            'beijing': { lat: 39.9042, lng: 116.4074 },
-            'shanghai': { lat: 31.2304, lng: 121.4737 },
-            'shenzhen': { lat: 22.5431, lng: 114.0579 },
-            'guangzhou': { lat: 23.1291, lng: 113.2644 },
-            'hangzhou': { lat: 30.2741, lng: 120.1551 },
-            'seoul': { lat: 37.5665, lng: 126.9780 },
-            'busan': { lat: 35.1796, lng: 129.0756 },
-            'singapore': { lat: 1.3521, lng: 103.8198 },
-            'bangkok': { lat: 13.7563, lng: 100.5018 },
-            'jakarta': { lat: -6.2088, lng: 106.8456 },
-            'manila': { lat: 14.5995, lng: 120.9842 },
-            'kuala lumpur': { lat: 3.1390, lng: 101.6869 },
-            'ho chi minh': { lat: 10.8231, lng: 106.6297 },
-            'hanoi': { lat: 21.0285, lng: 105.8542 },
-            'taipei': { lat: 25.0330, lng: 121.5654 },
-            'hong kong': { lat: 22.3193, lng: 114.1694 },
-            'macau': { lat: 22.1987, lng: 113.5439 }
-        };
-        
-        for (const [cityName, coords] of Object.entries(cityPatterns)) {
-            if (normalizedLocation.includes(cityName)) {
-                console.log(`🎯 Found city "${cityName}" in "${location}"`);
-                locationCache.set(location, coords);
-                return coords;
-            }
-        }
         
         // If still no match, use a default location based on likely region
         let defaultCoords = { lat: 37.7749, lng: -122.4194 }; // Default to SF
