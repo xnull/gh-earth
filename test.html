@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Map Test</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        #map { 
+            height: 500px; 
+            width: 100%;
+        }
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <h1>Map Test</h1>
+    <div id="map"></div>
+    <div id="status">Initializing...</div>
+    
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        console.log('Starting map test...');
+        document.getElementById('status').textContent = 'Loading Leaflet...';
+        
+        try {
+            console.log('Leaflet available:', typeof L);
+            document.getElementById('status').textContent = 'Creating map...';
+            
+            const map = L.map('map').setView([20, 0], 2);
+            console.log('Map created');
+            document.getElementById('status').textContent = 'Adding tiles...';
+            
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors',
+                maxZoom: 18
+            }).addTo(map);
+            
+            console.log('Tiles added');
+            document.getElementById('status').textContent = 'Map loaded successfully!';
+            
+            // Add a test marker
+            L.marker([37.7749, -122.4194]).addTo(map)
+                .bindPopup('Test marker in San Francisco')
+                .openPopup();
+                
+            console.log('Test marker added');
+            
+        } catch (error) {
+            console.error('Map error:', error);
+            document.getElementById('status').textContent = 'Error: ' + error.message;
+        }
+    </script>
+</body>
+</html>

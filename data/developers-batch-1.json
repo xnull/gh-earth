@@ -1,6 +1,6 @@
 {
   "batch": 1,
-  "generated_at": "2025-08-04T21:24:28.111Z",
+  "generated_at": "2025-08-04T22:33:59.428Z",
   "developers": [
     {
       "login": "dhh",
@@ -229,7 +229,1698 @@
       "followers": 21000,
       "public_repos": 267,
       "created_at": "2010-05-25T18:44:58Z"
+    },
+    {
+      "login": "iamthesiz",
+      "name": "Alex Cory",
+      "avatar_url": "https://avatars.githubusercontent.com/u/5455859?v=4",
+      "html_url": "https://github.com/iamthesiz",
+      "location": "San Francisco, CA",
+      "coordinates": {
+        "lat": 37.7792588,
+        "lng": -122.4193286
+      },
+      "company": "@ava",
+      "bio": "ʕ•̫͡•ʔ-̫͡-ʕ•͓͡•ʔ previously @facebook    ",
+      "blog": "alexcory.com",
+      "followers": 2000,
+      "following": 148,
+      "public_repos": 64,
+      "public_gists": 47,
+      "created_at": "2013-09-14T00:47:49Z",
+      "updated_at": "2025-07-17T04:35:55Z",
+      "downloaded_at": "2025-08-04T22:32:03.035Z",
+      "social": {
+        "website": "https://alexcory.com",
+        "twitter": "https://twitter.com/facebook"
+      },
+      "total_stars": 1747,
+      "total_forks": 104,
+      "top_languages": [
+        "TypeScript",
+        "JavaScript",
+        "PHP",
+        "Java",
+        "CSS"
+      ],
+      "public_repos_count": 64
+    },
+    {
+      "login": "withoutboats",
+      "name": "srrrse",
+      "avatar_url": "https://avatars.githubusercontent.com/u/9063376?v=4",
+      "html_url": "https://github.com/withoutboats",
+      "location": "Berlin",
+      "coordinates": {
+        "lat": 52.510885,
+        "lng": 13.3989367
+      },
+      "company": null,
+      "bio": "In civilizations without boats, dreams dry up, espionage takes the place of adventure, and police take the place of pirates.",
+      "blog": "without.boats",
+      "followers": 1999,
+      "following": 0,
+      "public_repos": 71,
+      "public_gists": 16,
+      "created_at": "2014-10-08T00:46:37Z",
+      "updated_at": "2025-04-03T16:22:32Z",
+      "downloaded_at": "2025-08-04T22:32:05.975Z",
+      "social": {
+        "website": "https://without.boats",
+        "twitter": "https://twitter.com/withoutboats"
+      },
+      "total_stars": 5449,
+      "total_forks": 234,
+      "top_languages": [
+        "Rust",
+        "HTML",
+        "Ruby",
+        "Python",
+        "JavaScript"
+      ],
+      "public_repos_count": 71
+    },
+    {
+      "login": "garrynewman",
+      "name": "Garry Newman",
+      "avatar_url": "https://avatars.githubusercontent.com/u/928843?v=4",
+      "html_url": "https://github.com/garrynewman",
+      "location": "England",
+      "coordinates": {
+        "lat": 52.5310214,
+        "lng": -1.2649062
+      },
+      "company": "@Facepunch ",
+      "bio": "Gorgeous and incredibly strong. Part of @Facepunch.",
+      "blog": "https://garry.tv",
+      "followers": 1998,
+      "following": 48,
+      "public_repos": 8,
+      "public_gists": 9,
+      "created_at": "2011-07-20T21:16:46Z",
+      "updated_at": "2025-08-04T14:00:39Z",
+      "downloaded_at": "2025-08-04T22:32:07.492Z",
+      "social": {
+        "website": "https://garry.tv",
+        "twitter": "https://twitter.com/garrynewman"
+      },
+      "total_stars": 765,
+      "total_forks": 172,
+      "top_languages": [
+        "C#",
+        "C",
+        "C++",
+        "Lua"
+      ],
+      "public_repos_count": 8
+    },
+    {
+      "login": "MlgmXyysd",
+      "name": "Jaida Wu",
+      "avatar_url": "https://avatars.githubusercontent.com/u/17919858?v=4",
+      "html_url": "https://github.com/MlgmXyysd",
+      "location": "In Your Heart <3",
+      "coordinates": {
+        "lat": 41.9395639,
+        "lng": -70.5831743
+      },
+      "company": "@MeowCat-Studio @Project-Kaleidoscope",
+      "bio": "An 22 y.o. cat who is passionate about technologies, open-source, intelligence, convenience, etc. (>ω･* )ﾉ\r\n\r\n\r\n",
+      "blog": "https://www.neko.ink/",
+      "followers": 1997,
+      "following": 24,
+      "public_repos": 136,
+      "public_gists": 2,
+      "created_at": "2016-03-18T04:57:43Z",
+      "updated_at": "2025-06-05T09:06:52Z",
+      "downloaded_at": "2025-08-04T22:32:09.942Z",
+      "social": {
+        "website": "https://www.neko.ink/",
+        "twitter": "https://twitter.com/realMlgmXyysd"
+      },
+      "total_stars": 9185,
+      "total_forks": 814,
+      "top_languages": [
+        "PHP",
+        "Shell",
+        "C#",
+        "Batchfile",
+        "Python"
+      ],
+      "public_repos_count": 100
+    },
+    {
+      "login": "realtux",
+      "name": "Brian Seymour",
+      "avatar_url": "https://avatars.githubusercontent.com/u/4989650?v=4",
+      "html_url": "https://github.com/realtux",
+      "location": "Florida",
+      "coordinates": {
+        "lat": 27.7567667,
+        "lng": -81.4639835
+      },
+      "company": "Helix",
+      "bio": "I'm Engineer Man on YouTube.",
+      "blog": "https://bri.io",
+      "followers": 1995,
+      "following": 2,
+      "public_repos": 36,
+      "public_gists": 1,
+      "created_at": "2013-07-11T12:42:21Z",
+      "updated_at": "2024-07-10T21:39:51Z",
+      "downloaded_at": "2025-08-04T22:32:11.715Z",
+      "social": {
+        "website": "https://bri.io",
+        "twitter": "https://twitter.com/_EngineerMan"
+      },
+      "total_stars": 485,
+      "total_forks": 57,
+      "top_languages": [
+        "JavaScript",
+        "Rust",
+        "Python",
+        "Go",
+        "C"
+      ],
+      "public_repos_count": 36
+    },
+    {
+      "login": "xuyisheng",
+      "name": "xuyisheng",
+      "avatar_url": "https://avatars.githubusercontent.com/u/7419202?v=4",
+      "html_url": "https://github.com/xuyisheng",
+      "location": "pudong,shanghai",
+      "coordinates": {
+        "lat": 31.1427359,
+        "lng": 121.8041131
+      },
+      "company": "https://xuyisheng.top/",
+      "bio": "Android & Flutter Developer 《Android群英传》《Android群英传-神兵利器》作者",
+      "blog": "https://xuyisheng.top/",
+      "followers": 1994,
+      "following": 100,
+      "public_repos": 181,
+      "public_gists": 1,
+      "created_at": "2014-04-27T09:26:57Z",
+      "updated_at": "2025-07-23T13:13:00Z",
+      "downloaded_at": "2025-08-04T22:32:14.950Z",
+      "social": {
+        "website": "https://xuyisheng.top/"
+      },
+      "total_stars": 6106,
+      "total_forks": 1805,
+      "top_languages": [
+        "Dart",
+        "Java",
+        "Kotlin",
+        "Handlebars",
+        "JavaScript"
+      ],
+      "public_repos_count": 100
+    },
+    {
+      "login": "stong",
+      "name": "cts",
+      "avatar_url": "https://avatars.githubusercontent.com/u/14918218?v=4",
+      "html_url": "https://github.com/stong",
+      "location": "0x4141414141414141",
+      "coordinates": null,
+      "company": "@Zellic ",
+      "bio": "Security researcher and co-founder @Zellic. CTFs with @perfectblue.\r\nPreviously @Vector35, @sslab-gatech.",
+      "blog": "pwn.cat",
+      "followers": 1994,
+      "following": 26,
+      "public_repos": 39,
+      "public_gists": 16,
+      "created_at": "2015-10-01T03:20:56Z",
+      "updated_at": "2025-07-29T01:48:37Z",
+      "downloaded_at": "2025-08-04T22:32:17.348Z",
+      "social": {
+        "website": "https://pwn.cat",
+        "twitter": "https://twitter.com/gf_256"
+      },
+      "total_stars": 4525,
+      "total_forks": 412,
+      "top_languages": [
+        "Python",
+        "C",
+        "C++",
+        "Rust",
+        "Assembly"
+      ],
+      "public_repos_count": 39
+    },
+    {
+      "login": "dsherret",
+      "name": "David Sherret",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1609021?v=4",
+      "html_url": "https://github.com/dsherret",
+      "location": "Toronto, Canada",
+      "coordinates": {
+        "lat": 43.6534817,
+        "lng": -79.3839347
+      },
+      "company": "@denoland",
+      "bio": null,
+      "blog": "https://david.deno.dev",
+      "followers": 1993,
+      "following": 25,
+      "public_repos": 159,
+      "public_gists": 18,
+      "created_at": "2012-04-03T17:13:35Z",
+      "updated_at": "2025-07-17T21:26:27Z",
+      "downloaded_at": "2025-08-04T22:32:19.514Z",
+      "social": {
+        "website": "https://david.deno.dev",
+        "twitter": "https://twitter.com/DavidSherret"
+      },
+      "total_stars": 9781,
+      "total_forks": 448,
+      "top_languages": [
+        "TypeScript",
+        "Rust",
+        "JavaScript",
+        "Dockerfile",
+        "C#"
+      ],
+      "public_repos_count": 100
+    },
+    {
+      "login": "jwest951227",
+      "name": "rustCapricorn",
+      "avatar_url": "https://avatars.githubusercontent.com/u/27551874?v=4",
+      "html_url": "https://github.com/jwest951227",
+      "location": "Solana AI Agents, Smart Contract, Trading Bots",
+      "coordinates": null,
+      "company": null,
+      "bio": "Solana AI Agents Dev | Solana Smart Contract & Trading Bots Dev ->\r\nRust Engineering&Developing @niceberginc @tap-3 @ChiralAI @Maurisource",
+      "blog": "",
+      "followers": 1993,
+      "following": 230,
+      "public_repos": 111,
+      "public_gists": 0,
+      "created_at": "2017-04-15T10:01:06Z",
+      "updated_at": "2025-04-25T16:53:10Z",
+      "downloaded_at": "2025-08-04T22:32:21.513Z",
+      "social": {
+        "twitter": "https://twitter.com/niceberginc"
+      },
+      "total_stars": 502,
+      "total_forks": 215,
+      "top_languages": [
+        "Rust",
+        "SCSS",
+        "Python",
+        "TypeScript",
+        "Jupyter Notebook"
+      ],
+      "public_repos_count": 100
+    },
+    {
+      "login": "bestswifter",
+      "name": "Kt Zhang",
+      "avatar_url": "https://avatars.githubusercontent.com/u/8394612?v=4",
+      "html_url": "https://github.com/bestswifter",
+      "location": "Beijing，China",
+      "coordinates": {
+        "lat": 40.190632,
+        "lng": 116.412144
+      },
+      "company": "ByteDance",
+      "bio": "an iOSer，love coding",
+      "blog": "https://bestswifter.com",
+      "followers": 1993,
+      "following": 31,
+      "public_repos": 50,
+      "public_gists": 3,
+      "created_at": "2014-08-08T12:11:11Z",
+      "updated_at": "2025-05-15T12:36:14Z",
+      "downloaded_at": "2025-08-04T22:32:25.003Z",
+      "social": {
+        "website": "https://bestswifter.com"
+      },
+      "total_stars": 5432,
+      "total_forks": 1603,
+      "top_languages": [
+        "Objective-C",
+        "Shell",
+        "HTML",
+        "Vim script",
+        "C++"
+      ],
+      "public_repos_count": 50
+    },
+    {
+      "login": "ruvnet",
+      "name": "rUv",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2934394?v=4",
+      "html_url": "https://github.com/ruvnet",
+      "location": "0x",
+      "coordinates": {
+        "lat": -7.9700514,
+        "lng": 112.6073392
+      },
+      "company": "Not a Bot",
+      "bio": "Unicorn Breeder. ",
+      "blog": "",
+      "followers": 1992,
+      "following": 34,
+      "public_repos": 152,
+      "public_gists": 223,
+      "created_at": "2012-11-30T22:08:25Z",
+      "updated_at": "2025-08-03T00:28:43Z",
+      "downloaded_at": "2025-08-04T22:32:27.526Z",
+      "social": {
+        "twitter": "https://twitter.com/ruv"
+      },
+      "total_stars": 10278,
+      "total_forks": 1989,
+      "top_languages": [
+        "TypeScript",
+        "Shell",
+        "Python",
+        "Rust",
+        "JavaScript"
+      ],
+      "public_repos_count": 100
+    },
+    {
+      "login": "danijar",
+      "name": "Danijar Hafner",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2111293?v=4",
+      "html_url": "https://github.com/danijar",
+      "location": "Berkeley",
+      "coordinates": {
+        "lat": 37.8708393,
+        "lng": -122.272863
+      },
+      "company": "DeepMind",
+      "bio": "Building AI that makes autonomous decisions using world models, artificial curiosity, and temporal abstraction",
+      "blog": "https://danijar.com",
+      "followers": 1991,
+      "following": 0,
+      "public_repos": 97,
+      "public_gists": 24,
+      "created_at": "2012-08-07T17:06:11Z",
+      "updated_at": "2025-08-03T00:14:45Z",
+      "downloaded_at": "2025-08-04T22:32:30.275Z",
+      "social": {
+        "website": "https://danijar.com",
+        "twitter": "https://twitter.com/danijarh"
+      },
+      "total_stars": 7396,
+      "total_forks": 1033,
+      "top_languages": [
+        "Python",
+        "Jupyter Notebook",
+        "C++",
+        "Java",
+        "Vue"
+      ],
+      "public_repos_count": 97
+    },
+    {
+      "login": "frontendmentorio",
+      "name": "Frontend Mentor",
+      "avatar_url": "https://avatars.githubusercontent.com/u/47932038?v=4",
+      "html_url": "https://github.com/frontendmentorio",
+      "location": "100% Online",
+      "coordinates": {
+        "lat": 41.8854881,
+        "lng": -87.6249096
+      },
+      "company": null,
+      "bio": "Improve your front-end skills by building real projects",
+      "blog": "https://www.frontendmentor.io",
+      "followers": 1991,
+      "following": 0,
+      "public_repos": 74,
+      "public_gists": 0,
+      "created_at": "2019-02-24T00:56:25Z",
+      "updated_at": "2025-03-31T14:35:18Z",
+      "downloaded_at": "2025-08-04T22:32:34.288Z",
+      "social": {
+        "website": "https://www.frontendmentor.io",
+        "twitter": "https://twitter.com/frontendmentor"
+      },
+      "total_stars": 171,
+      "total_forks": 258,
+      "top_languages": [
+        "HTML",
+        "JavaScript"
+      ],
+      "public_repos_count": 74
+    },
+    {
+      "login": "mattjj",
+      "name": "Matthew Johnson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1458824?v=4",
+      "html_url": "https://github.com/mattjj",
+      "location": "San Francisco",
+      "coordinates": {
+        "lat": 37.7792588,
+        "lng": -122.4193286
+      },
+      "company": "Google",
+      "bio": "research scientist @ Google Brain",
+      "blog": "people.csail.mit.edu/~mattjj",
+      "followers": 1990,
+      "following": 138,
+      "public_repos": 80,
+      "public_gists": 115,
+      "created_at": "2012-02-21T20:31:41Z",
+      "updated_at": "2025-07-31T04:08:50Z",
+      "downloaded_at": "2025-08-04T22:32:36.858Z",
+      "social": {
+        "website": "https://people.csail.mit.edu/~mattjj"
+      },
+      "total_stars": 2552,
+      "total_forks": 625,
+      "top_languages": [
+        "Python",
+        "Jupyter Notebook",
+        "Shell",
+        "Objective-C",
+        "HTML"
+      ],
+      "public_repos_count": 80
+    },
+    {
+      "login": "nikhita",
+      "name": "Nikhita Raghunath",
+      "avatar_url": "https://avatars.githubusercontent.com/u/16105680?v=4",
+      "html_url": "https://github.com/nikhita",
+      "location": "Bangalore, India",
+      "coordinates": {
+        "lat": 12.9767936,
+        "lng": 77.590082
+      },
+      "company": "@broadcom ",
+      "bio": "Principal Engineer @broadcom | @kubernetes Maintainer | ex Vice Chair @cncf Technical Oversight Committee, KubeCon Chair, @kubernetes Steering",
+      "blog": "",
+      "followers": 1990,
+      "following": 66,
+      "public_repos": 235,
+      "public_gists": 41,
+      "created_at": "2015-12-01T18:28:27Z",
+      "updated_at": "2025-07-25T10:27:24Z",
+      "downloaded_at": "2025-08-04T22:32:40.147Z",
+      "social": {
+        "twitter": "https://twitter.com/TheNikhita"
+      },
+      "total_stars": 932,
+      "total_forks": 250,
+      "top_languages": [
+        "Go",
+        "SCSS",
+        "HTML",
+        "Shell",
+        "Jupyter Notebook"
+      ],
+      "public_repos_count": 100
+    },
+    {
+      "login": "kauer3",
+      "name": "Kauê Reis",
+      "avatar_url": "https://avatars.githubusercontent.com/u/68311889?v=4",
+      "html_url": "https://github.com/kauer3",
+      "location": "New Zealand",
+      "coordinates": {
+        "lat": -41.5000831,
+        "lng": 172.8344077
+      },
+      "company": null,
+      "bio": "What did the HTML say to the CSS? I like your style.",
+      "blog": "https://kauereis.tech/",
+      "followers": 1989,
+      "following": 512,
+      "public_repos": 57,
+      "public_gists": 0,
+      "created_at": "2020-07-15T02:45:28Z",
+      "updated_at": "2025-07-22T19:08:45Z",
+      "downloaded_at": "2025-08-04T22:32:42.156Z",
+      "social": {
+        "website": "https://kauereis.tech/"
+      },
+      "total_stars": 207,
+      "total_forks": 16,
+      "top_languages": [
+        "Scheme",
+        "C#",
+        "ASP.NET",
+        "JavaScript",
+        "Shell"
+      ],
+      "public_repos_count": 57
+    },
+    {
+      "login": "HariSekhon",
+      "name": "Hari Sekhon",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2211051?v=4",
+      "html_url": "https://github.com/HariSekhon",
+      "location": "London, United Kingdom",
+      "coordinates": {
+        "lat": 51.5074456,
+        "lng": -0.1277653
+      },
+      "company": "Private cos of a Crazy Exe",
+      "bio": "Cloud Architect, DevOps, Data Engineer, Big Data (ex-Cloudera), 100% Remote Overseas Digital Nomad",
+      "blog": "",
+      "followers": 1989,
+      "following": 32,
+      "public_repos": 207,
+      "public_gists": 290,
+      "created_at": "2012-08-24T11:15:45Z",
+      "updated_at": "2025-07-25T11:24:57Z",
+      "downloaded_at": "2025-08-04T22:32:45.321Z",
+      "social": {
+        "twitter": "https://twitter.com/harisekhon"
+      },
+      "total_stars": 13013,
+      "total_forks": 3460,
+      "top_languages": [
+        "Shell",
+        "D2",
+        "Python",
+        "HCL",
+        "Perl"
+      ],
+      "public_repos_count": 100
+    },
+    {
+      "login": "Yorko",
+      "name": "Yury Kashnitsky",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3973673?v=4",
+      "html_url": "https://github.com/Yorko",
+      "location": "Amsterdam",
+      "coordinates": {
+        "lat": 52.3730796,
+        "lng": 4.8924534
+      },
+      "company": "Google Cloud",
+      "bio": "Staff GenAI Fields Solution Architect @ Google Cloud, Amsterdam",
+      "blog": "https://yorko.github.io",
+      "followers": 1988,
+      "following": 22,
+      "public_repos": 20,
+      "public_gists": 3,
+      "created_at": "2013-03-26T10:33:11Z",
+      "updated_at": "2025-07-16T14:04:02Z",
+      "downloaded_at": "2025-08-04T22:32:46.971Z",
+      "social": {
+        "website": "https://yorko.github.io",
+        "twitter": "https://twitter.com/ykashnitsky"
+      },
+      "total_stars": 11232,
+      "total_forks": 6107,
+      "top_languages": [
+        "Python",
+        "Jupyter Notebook",
+        "HTML",
+        "SCSS"
+      ],
+      "public_repos_count": 20
+    },
+    {
+      "login": "yacineMTB",
+      "name": "yacine",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10282244?v=4",
+      "html_url": "https://github.com/yacineMTB",
+      "location": "Ottawa, Canada",
+      "coordinates": {
+        "lat": 45.4208777,
+        "lng": -75.6901106
+      },
+      "company": "X",
+      "bio": "https://yacine.ca/practice.mp4 ",
+      "blog": "yacine.ca",
+      "followers": 1988,
+      "following": 117,
+      "public_repos": 27,
+      "public_gists": 1,
+      "created_at": "2014-12-23T16:48:41Z",
+      "updated_at": "2025-06-25T15:49:33Z",
+      "downloaded_at": "2025-08-04T22:32:48.830Z",
+      "social": {
+        "website": "https://yacine.ca",
+        "twitter": "https://twitter.com/yacineMTB"
+      },
+      "total_stars": 2132,
+      "total_forks": 179,
+      "top_languages": [
+        "HTML",
+        "JavaScript",
+        "TypeScript",
+        "Lua",
+        "Jupyter Notebook"
+      ],
+      "public_repos_count": 27
+    },
+    {
+      "login": "awni",
+      "name": "Awni Hannun",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1542805?v=4",
+      "html_url": "https://github.com/awni",
+      "location": "United States",
+      "coordinates": {
+        "lat": 39.7837304,
+        "lng": -100.445882
+      },
+      "company": "Apple",
+      "bio": "Research Scientist in Machine Learning at Apple",
+      "blog": "https://awnihannun.com/",
+      "followers": 1987,
+      "following": 1,
+      "public_repos": 30,
+      "public_gists": 30,
+      "created_at": "2012-03-16T04:04:16Z",
+      "updated_at": "2025-07-29T14:44:49Z",
+      "downloaded_at": "2025-08-04T22:32:50.504Z",
+      "social": {
+        "website": "https://awnihannun.com/"
+      },
+      "total_stars": 1996,
+      "total_forks": 550,
+      "top_languages": [
+        "Python",
+        "Jupyter Notebook",
+        "C++",
+        "TeX",
+        "HTML"
+      ],
+      "public_repos_count": 30
+    },
+    {
+      "login": "dunwu",
+      "name": "钝悟",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19661255?v=4",
+      "html_url": "https://github.com/dunwu",
+      "location": "China, Nanjing",
+      "coordinates": {
+        "lat": 32.0438284,
+        "lng": 118.7788631
+      },
+      "company": null,
+      "bio": "大道至简，知易行难",
+      "blog": "",
+      "followers": 1987,
+      "following": 40,
+      "public_repos": 43,
+      "public_gists": 0,
+      "created_at": "2016-05-31T06:02:57Z",
+      "updated_at": "2025-08-04T09:24:50Z",
+      "downloaded_at": "2025-08-04T22:32:52.928Z",
+      "social": {},
+      "total_stars": 24430,
+      "total_forks": 4338,
+      "top_languages": [
+        "Shell",
+        "Java",
+        "JavaScript",
+        "CSS",
+        "Vue"
+      ],
+      "public_repos_count": 43
+    },
+    {
+      "login": "mGalarnyk",
+      "name": "Michael Galarnyk",
+      "avatar_url": "https://avatars.githubusercontent.com/u/11932986?v=4",
+      "html_url": "https://github.com/mGalarnyk",
+      "location": "Atlanta, GA",
+      "coordinates": {
+        "lat": 33.7544657,
+        "lng": -84.3898151
+      },
+      "company": "Georgia Institute of Technology",
+      "bio": "Georgia Tech PhD student",
+      "blog": "https://www.youtube.com/c/MichaelGalarnyk",
+      "followers": 1986,
+      "following": 30,
+      "public_repos": 29,
+      "public_gists": 115,
+      "created_at": "2015-04-13T22:26:33Z",
+      "updated_at": "2025-07-27T14:32:39Z",
+      "downloaded_at": "2025-08-04T22:32:55.869Z",
+      "social": {
+        "website": "https://www.youtube.com/c/MichaelGalarnyk",
+        "youtube": "https://www.youtube.com/c/MichaelGalarnyk",
+        "twitter": "https://twitter.com/GalarnykMichael"
+      },
+      "total_stars": 4248,
+      "total_forks": 3824,
+      "top_languages": [
+        "HTML",
+        "Jupyter Notebook",
+        "JavaScript",
+        "Python",
+        "R"
+      ],
+      "public_repos_count": 29
+    },
+    {
+      "login": "kara",
+      "name": "Kara",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3871688?v=4",
+      "html_url": "https://github.com/kara",
+      "location": "San Francisco, CA",
+      "coordinates": {
+        "lat": 37.7792588,
+        "lng": -122.4193286
+      },
+      "company": "Google",
+      "bio": "Aurora team (Google Chrome)",
+      "blog": "",
+      "followers": 1986,
+      "following": 0,
+      "public_repos": 82,
+      "public_gists": 0,
+      "created_at": "2013-03-15T05:43:28Z",
+      "updated_at": "2025-01-28T18:27:09Z",
+      "downloaded_at": "2025-08-04T22:32:58.576Z",
+      "social": {
+        "twitter": "https://twitter.com/karaforthewin"
+      },
+      "total_stars": 521,
+      "total_forks": 184,
+      "top_languages": [
+        "JavaScript",
+        "TypeScript",
+        "Java",
+        "HTML",
+        "Vue"
+      ],
+      "public_repos_count": 82
+    },
+    {
+      "login": "bonigarcia",
+      "name": "Boni García",
+      "avatar_url": "https://avatars.githubusercontent.com/u/5413013?v=4",
+      "html_url": "https://github.com/bonigarcia",
+      "location": "Madrid",
+      "coordinates": {
+        "lat": 40.4167047,
+        "lng": -3.7035825
+      },
+      "company": "UC3M",
+      "bio": "Associate Professor @UC3M,\r\nTech Lead @SeleniumHQ",
+      "blog": "https://bonigarcia.dev",
+      "followers": 1986,
+      "following": 0,
+      "public_repos": 59,
+      "public_gists": 12,
+      "created_at": "2013-09-08T18:59:27Z",
+      "updated_at": "2025-07-26T11:24:48Z",
+      "downloaded_at": "2025-08-04T22:33:00.663Z",
+      "social": {
+        "website": "https://bonigarcia.dev",
+        "twitter": "https://twitter.com/boni_gg"
+      },
+      "total_stars": 4093,
+      "total_forks": 1358,
+      "top_languages": [
+        "Java",
+        "Rust",
+        "Python",
+        "HTML",
+        "Jupyter Notebook"
+      ],
+      "public_repos_count": 59
+    },
+    {
+      "login": "byrantech",
+      "name": "Byran Huang",
+      "avatar_url": "https://avatars.githubusercontent.com/u/61983584?v=4",
+      "html_url": "https://github.com/byrantech",
+      "location": "Time-Space Continuum",
+      "coordinates": null,
+      "company": "EE @neuralinkcorp, Fellow @futo-org, OSS @zmkfirmware, @keychron, prev. @murexrobotics & MIT RLE THz",
+      "bio": "attempt the impossible.",
+      "blog": "byran.tech",
+      "followers": 1985,
+      "following": 19,
+      "public_repos": 42,
+      "public_gists": 0,
+      "created_at": "2020-03-09T16:22:40Z",
+      "updated_at": "2025-07-11T23:18:21Z",
+      "downloaded_at": "2025-08-04T22:33:05.167Z",
+      "social": {
+        "website": "https://byran.tech"
+      },
+      "total_stars": 3553,
+      "total_forks": 164,
+      "top_languages": [
+        "KiCad Layout",
+        "C",
+        "HTML",
+        "Python",
+        "Shell"
+      ],
+      "public_repos_count": 42
+    },
+    {
+      "login": "Err0r-ICA",
+      "name": "*Err0r_HB*",
+      "avatar_url": "https://avatars.githubusercontent.com/u/59941931?v=4",
+      "html_url": "https://github.com/Err0r-ICA",
+      "location": "Italia ",
+      "coordinates": {
+        "lat": 42.6384261,
+        "lng": 12.674297
+      },
+      "company": "Cyb3r Drag0nz Team",
+      "bio": "http://www.zone-h.org/archive/notifier=Cyb3r_Drag0nz_Team",
+      "blog": "https://Cyb3r.army",
+      "followers": 1984,
+      "following": 113,
+      "public_repos": 68,
+      "public_gists": 0,
+      "created_at": "2020-01-16T00:06:50Z",
+      "updated_at": "2025-05-13T01:14:10Z",
+      "downloaded_at": "2025-08-04T22:33:07.391Z",
+      "social": {
+        "website": "https://Cyb3r.army",
+        "twitter": "https://twitter.com/ERR0R_HB"
+      },
+      "total_stars": 6074,
+      "total_forks": 749,
+      "top_languages": [
+        "Shell",
+        "HTML",
+        "Python",
+        "C",
+        "Hack"
+      ],
+      "public_repos_count": 68
+    },
+    {
+      "login": "sergeyshaykhullin",
+      "name": "Sergey Shaykhullin",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46970457?v=4",
+      "html_url": "https://github.com/sergeyshaykhullin",
+      "location": "Moscow",
+      "coordinates": {
+        "lat": 55.625578,
+        "lng": 37.6063916
+      },
+      "company": null,
+      "bio": "Kubernetes 👀 .NET 👀 Rust 👀 Next.js",
+      "blog": "",
+      "followers": 1984,
+      "following": 3,
+      "public_repos": 16,
+      "public_gists": 5,
+      "created_at": "2019-01-23T16:40:07Z",
+      "updated_at": "2025-08-04T11:55:23Z",
+      "downloaded_at": "2025-08-04T22:33:09.031Z",
+      "social": {},
+      "total_stars": 111,
+      "total_forks": 30,
+      "top_languages": [
+        "Go",
+        "Mustache",
+        "Shell",
+        "C#",
+        "JavaScript"
+      ],
+      "public_repos_count": 16
+    },
+    {
+      "login": "dwisiswant0",
+      "name": "Dwi Siswanto",
+      "avatar_url": "https://avatars.githubusercontent.com/u/25837540?v=4",
+      "html_url": "https://github.com/dwisiswant0",
+      "location": "Jakarta, Indonesia",
+      "coordinates": {
+        "lat": -6.1754049,
+        "lng": 106.827168
+      },
+      "company": "@projectdiscovery",
+      "bio": "building @teler-sh; maintains @mubeng; works @projectdiscovery; security r&d; bashturbation",
+      "blog": "dw1.io",
+      "followers": 1982,
+      "following": 66,
+      "public_repos": 122,
+      "public_gists": 49,
+      "created_at": "2017-02-17T05:50:43Z",
+      "updated_at": "2025-07-21T22:23:39Z",
+      "downloaded_at": "2025-08-04T22:33:12.481Z",
+      "social": {
+        "website": "https://dw1.io",
+        "twitter": "https://twitter.com/dwisiswant0"
+      },
+      "total_stars": 15466,
+      "total_forks": 2130,
+      "top_languages": [
+        "JavaScript",
+        "Python",
+        "Go",
+        "Shell",
+        "TypeScript"
+      ],
+      "public_repos_count": 100
+    },
+    {
+      "login": "huiyadanli",
+      "name": "辉鸭蛋",
+      "avatar_url": "https://avatars.githubusercontent.com/u/15783049?v=4",
+      "html_url": "https://github.com/huiyadanli",
+      "location": "Hangzhou, China",
+      "coordinates": {
+        "lat": 30.2489634,
+        "lng": 120.2052342
+      },
+      "company": null,
+      "bio": "🥚 𝒁-𝑻𝒖𝒓𝒏 𝒐𝒓 𝒅𝒊𝒆 不折腾会死",
+      "blog": "https://www.huiyadan.com",
+      "followers": 1982,
+      "following": 33,
+      "public_repos": 37,
+      "public_gists": 2,
+      "created_at": "2015-11-10T13:48:54Z",
+      "updated_at": "2025-07-14T10:22:29Z",
+      "downloaded_at": "2025-08-04T22:33:14.191Z",
+      "social": {
+        "website": "https://www.huiyadan.com"
+      },
+      "total_stars": 35596,
+      "total_forks": 4181,
+      "top_languages": [
+        "C#",
+        "TypeScript",
+        "Vue",
+        "HTML",
+        "JavaScript"
+      ],
+      "public_repos_count": 37
+    },
+    {
+      "login": "ljpzzz",
+      "name": "刘建平(Pinard Liu)",
+      "avatar_url": "https://avatars.githubusercontent.com/u/13940977?v=4",
+      "html_url": "https://github.com/ljpzzz",
+      "location": "Guangzhou, China",
+      "coordinates": {
+        "lat": 23.1301964,
+        "lng": 113.2592945
+      },
+      "company": null,
+      "bio": "Never stop learning.",
+      "blog": "http://cnblogs.com/pinard",
+      "followers": 1981,
+      "following": 1,
+      "public_repos": 3,
+      "public_gists": 0,
+      "created_at": "2015-08-24T08:10:39Z",
+      "updated_at": "2025-07-03T06:07:31Z",
+      "downloaded_at": "2025-08-04T22:33:15.720Z",
+      "social": {
+        "website": "http://cnblogs.com/pinard"
+      },
+      "total_stars": 8571,
+      "total_forks": 3747,
+      "top_languages": [
+        "Jupyter Notebook",
+        "Java"
+      ],
+      "public_repos_count": 3
+    },
+    {
+      "login": "anitaa1990",
+      "name": "Anitaa Murthy",
+      "avatar_url": "https://avatars.githubusercontent.com/u/22608780?v=4",
+      "html_url": "https://github.com/anitaa1990",
+      "location": "Chennai",
+      "coordinates": {
+        "lat": 13.0836939,
+        "lng": 80.270186
+      },
+      "company": null,
+      "bio": "Android Developer/iOS Developer",
+      "blog": "",
+      "followers": 1981,
+      "following": 12,
+      "public_repos": 42,
+      "public_gists": 398,
+      "created_at": "2016-10-04T05:03:44Z",
+      "updated_at": "2025-07-28T10:55:22Z",
+      "downloaded_at": "2025-08-04T22:33:17.172Z",
+      "social": {},
+      "total_stars": 4152,
+      "total_forks": 1404,
+      "top_languages": [
+        "Kotlin",
+        "Java",
+        "Swift",
+        "Dart"
+      ],
+      "public_repos_count": 42
+    },
+    {
+      "login": "processing",
+      "name": "Processing Foundation",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1617169?v=4",
+      "html_url": "https://github.com/processing",
+      "location": "Boston, New York, Los Angeles, Worldwide",
+      "coordinates": null,
+      "company": null,
+      "bio": "We create platforms to promote software literacy within the visual arts, and visual literacy within technology-related fields.",
+      "blog": "https://processingfoundation.org/",
+      "followers": 1980,
+      "following": 0,
+      "public_repos": 63,
+      "public_gists": 0,
+      "created_at": "2012-04-06T00:27:35Z",
+      "updated_at": "2025-03-16T21:02:17Z",
+      "downloaded_at": "2025-08-04T22:33:18.873Z",
+      "social": {
+        "website": "https://processingfoundation.org/"
+      },
+      "total_stars": 35746,
+      "total_forks": 9984,
+      "top_languages": [
+        "JavaScript",
+        "Java",
+        "Processing",
+        "MDX",
+        "Python"
+      ],
+      "public_repos_count": 63
+    },
+    {
+      "login": "jbloch",
+      "name": "Joshua Bloch",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2133870?v=4",
+      "html_url": "https://github.com/jbloch",
+      "location": "Earth",
+      "coordinates": {
+        "lat": 34.2331373,
+        "lng": -102.4107493
+      },
+      "company": "CMU",
+      "bio": "Effective Java author, API Designer, Swell guy",
+      "blog": "",
+      "followers": 1980,
+      "following": 0,
+      "public_repos": 4,
+      "public_gists": 0,
+      "created_at": "2012-08-11T06:28:07Z",
+      "updated_at": "2025-03-14T16:59:19Z",
+      "downloaded_at": "2025-08-04T22:33:20.049Z",
+      "social": {},
+      "total_stars": 4017,
+      "total_forks": 1985,
+      "top_languages": [
+        "Java"
+      ],
+      "public_repos_count": 4
+    },
+    {
+      "login": "xchanmolx",
+      "name": "Chiantine P. Manigos",
+      "avatar_url": "https://avatars.githubusercontent.com/u/16154263?v=4",
+      "html_url": "https://github.com/xchanmolx",
+      "location": "Philippines",
+      "coordinates": {
+        "lat": 12.7503486,
+        "lng": 122.7312101
+      },
+      "company": "Manigos Information Technology Solutions",
+      "bio": "Full-Stack web/software developer focusing on .net core web api, angular, and sql server, mysql etc...",
+      "blog": "https://chantin-4218a.web.app/",
+      "followers": 1980,
+      "following": 11155,
+      "public_repos": 50,
+      "public_gists": 0,
+      "created_at": "2015-12-04T15:28:02Z",
+      "updated_at": "2025-07-29T06:42:01Z",
+      "downloaded_at": "2025-08-04T22:33:21.594Z",
+      "social": {
+        "website": "https://chantin-4218a.web.app/",
+        "twitter": "https://twitter.com/xchanmolx"
+      },
+      "total_stars": 469,
+      "total_forks": 12,
+      "top_languages": [
+        "Java",
+        "C#",
+        "HTML",
+        "JavaScript",
+        "CSS"
+      ],
+      "public_repos_count": 50
+    },
+    {
+      "login": "L1aoXingyu",
+      "name": "Xingyu",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19245504?v=4",
+      "html_url": "https://github.com/L1aoXingyu",
+      "location": "Beijing, China",
+      "coordinates": {
+        "lat": 40.190632,
+        "lng": 116.412144
+      },
+      "company": null,
+      "bio": "Engineer\r\n",
+      "blog": "",
+      "followers": 1979,
+      "following": 337,
+      "public_repos": 162,
+      "public_gists": 11,
+      "created_at": "2016-05-08T01:47:36Z",
+      "updated_at": "2025-07-31T07:14:30Z",
+      "downloaded_at": "2025-08-04T22:33:23.896Z",
+      "social": {
+        "twitter": "https://twitter.com/xingyu_liao"
+      },
+      "total_stars": 9037,
+      "total_forks": 3275,
+      "top_languages": [
+        "Jupyter Notebook",
+        "Python",
+        "TeX",
+        "HTML",
+        "Vim Script"
+      ],
+      "public_repos_count": 100
+    },
+    {
+      "login": "RobinMalfait",
+      "name": "Robin Malfait",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1834413?v=4",
+      "html_url": "https://github.com/RobinMalfait",
+      "location": "Ghent, Belgium",
+      "coordinates": {
+        "lat": 51.0538286,
+        "lng": 3.7250121
+      },
+      "company": "@tailwindlabs",
+      "bio": null,
+      "blog": "https://robinmalfait.com",
+      "followers": 1979,
+      "following": 170,
+      "public_repos": 64,
+      "public_gists": 42,
+      "created_at": "2012-06-09T22:00:12Z",
+      "updated_at": "2025-06-11T10:29:06Z",
+      "downloaded_at": "2025-08-04T22:33:26.467Z",
+      "social": {
+        "website": "https://robinmalfait.com",
+        "twitter": "https://twitter.com/malfaitrobin"
+      },
+      "total_stars": 865,
+      "total_forks": 138,
+      "top_languages": [
+        "Rust",
+        "TypeScript",
+        "JavaScript",
+        "HTML",
+        "PHP"
+      ],
+      "public_repos_count": 64
+    },
+    {
+      "login": "volvo-cars",
+      "name": "Volvo Cars",
+      "avatar_url": "https://avatars.githubusercontent.com/u/31673679?v=4",
+      "html_url": "https://github.com/volvo-cars",
+      "location": "Sweden",
+      "coordinates": {
+        "lat": 59.6749712,
+        "lng": 14.5208584
+      },
+      "company": null,
+      "bio": null,
+      "blog": "https://www.volvocars.com",
+      "followers": 1978,
+      "following": 0,
+      "public_repos": 38,
+      "public_gists": 0,
+      "created_at": "2017-09-05T22:23:27Z",
+      "updated_at": "2025-03-24T11:36:19Z",
+      "downloaded_at": "2025-08-04T22:33:28.162Z",
+      "social": {
+        "website": "https://www.volvocars.com"
+      },
+      "total_stars": 466,
+      "total_forks": 339,
+      "top_languages": [
+        "C#",
+        "Python",
+        "TypeScript",
+        "JavaScript",
+        "Kotlin"
+      ],
+      "public_repos_count": 38
+    },
+    {
+      "login": "PaulRBerg",
+      "name": "Paul Berg",
+      "avatar_url": "https://avatars.githubusercontent.com/u/8782666?v=4",
+      "html_url": "https://github.com/PaulRBerg",
+      "location": "Romania",
+      "coordinates": {
+        "lat": 45.9852129,
+        "lng": 24.6859225
+      },
+      "company": "@sablier-labs",
+      "bio": "Builder and co-founder @sablier-labs\r\n\r\nENS: prberg.eth",
+      "blog": "https://prberg.com",
+      "followers": 1977,
+      "following": 364,
+      "public_repos": 182,
+      "public_gists": 122,
+      "created_at": "2014-09-15T18:40:27Z",
+      "updated_at": "2025-07-15T05:31:30Z",
+      "downloaded_at": "2025-08-04T22:33:30.714Z",
+      "social": {
+        "website": "https://prberg.com",
+        "twitter": "https://twitter.com/PaulRBerg"
+      },
+      "total_stars": 5014,
+      "total_forks": 994,
+      "top_languages": [
+        "JavaScript",
+        "Solidity",
+        "TypeScript",
+        "Just",
+        "Shell"
+      ],
+      "public_repos_count": 100
+    },
+    {
+      "login": "aszx87410",
+      "name": "Huli",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2755720?v=4",
+      "html_url": "https://github.com/aszx87410",
+      "location": "Taipei, Taiwan",
+      "coordinates": {
+        "lat": 25.0375198,
+        "lng": 121.5636796
+      },
+      "company": null,
+      "bio": "Love coding, teaching, and writing. Believe sharing can make the world a better place.",
+      "blog": "https://blog.huli.tw/about/",
+      "followers": 1977,
+      "following": 20,
+      "public_repos": 73,
+      "public_gists": 13,
+      "created_at": "2012-11-09T02:59:04Z",
+      "updated_at": "2025-07-20T11:26:17Z",
+      "downloaded_at": "2025-08-04T22:33:33.323Z",
+      "social": {
+        "website": "https://blog.huli.tw/about/"
+      },
+      "total_stars": 1902,
+      "total_forks": 298,
+      "top_languages": [
+        "JavaScript",
+        "HTML",
+        "TypeScript",
+        "Shell",
+        "Python"
+      ],
+      "public_repos_count": 73
+    },
+    {
+      "login": "trustedsec",
+      "name": "trustedsec",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3160808?v=4",
+      "html_url": "https://github.com/trustedsec",
+      "location": "Cleveland, Ohio",
+      "coordinates": {
+        "lat": 41.4996574,
+        "lng": -81.6936772
+      },
+      "company": null,
+      "bio": null,
+      "blog": "https://www.trustedsec.com",
+      "followers": 1977,
+      "following": 0,
+      "public_repos": 57,
+      "public_gists": 1,
+      "created_at": "2012-12-31T21:38:57Z",
+      "updated_at": "2023-10-10T13:56:10Z",
+      "downloaded_at": "2025-08-04T22:33:35.237Z",
+      "social": {
+        "website": "https://www.trustedsec.com",
+        "twitter": "https://twitter.com/TrustedSec"
+      },
+      "total_stars": 36780,
+      "total_forks": 8370,
+      "top_languages": [
+        "Python",
+        "C",
+        "Shell",
+        "JavaScript",
+        "C#"
+      ],
+      "public_repos_count": 57
+    },
+    {
+      "login": "julianduque",
+      "name": "Julián Duque",
+      "avatar_url": "https://avatars.githubusercontent.com/u/733877?v=4",
+      "html_url": "https://github.com/julianduque",
+      "location": "St Petersburg, FL",
+      "coordinates": {
+        "lat": 27.7700475,
+        "lng": -82.6359078
+      },
+      "company": "@Heroku",
+      "bio": "Developer and Educator",
+      "blog": "https://julianduque.co",
+      "followers": 1976,
+      "following": 310,
+      "public_repos": 149,
+      "public_gists": 36,
+      "created_at": "2011-04-16T20:33:37Z",
+      "updated_at": "2025-08-04T19:05:30Z",
+      "downloaded_at": "2025-08-04T22:33:37.170Z",
+      "social": {
+        "website": "https://julianduque.co",
+        "twitter": "https://twitter.com/julian_duque"
+      },
+      "total_stars": 696,
+      "total_forks": 360,
+      "top_languages": [
+        "TypeScript",
+        "JavaScript",
+        "Rust",
+        "Erlang",
+        "Nunjucks"
+      ],
+      "public_repos_count": 100
+    },
+    {
+      "login": "mishmanners",
+      "name": "Michelle \"MishManners®™\" Duke",
+      "avatar_url": "https://avatars.githubusercontent.com/u/36594527?v=4",
+      "html_url": "https://github.com/mishmanners",
+      "location": "Melbourne, Australia",
+      "coordinates": {
+        "lat": -37.8142454,
+        "lng": 144.9631732
+      },
+      "company": "@github ",
+      "bio": "Senior Developer Advocate 🥑 | Hackathon Queen | International Speaker | Content Creator",
+      "blog": "mishmanners.info",
+      "followers": 1976,
+      "following": 83,
+      "public_repos": 131,
+      "public_gists": 10,
+      "created_at": "2018-02-18T11:07:49Z",
+      "updated_at": "2025-08-04T17:39:41Z",
+      "downloaded_at": "2025-08-04T22:33:39.308Z",
+      "social": {
+        "website": "https://mishmanners.info",
+        "twitter": "https://twitter.com/MishManners"
+      },
+      "total_stars": 494,
+      "total_forks": 274,
+      "top_languages": [
+        "JavaScript",
+        "HTML",
+        "COBOL",
+        "C#",
+        "TypeScript"
+      ],
+      "public_repos_count": 100
+    },
+    {
+      "login": "kyegomez",
+      "name": "Kye Gomez",
+      "avatar_url": "https://avatars.githubusercontent.com/u/98760976?v=4",
+      "html_url": "https://github.com/kyegomez",
+      "location": "Palo Alto",
+      "coordinates": {
+        "lat": 37.4443293,
+        "lng": -122.1598465
+      },
+      "company": "Swarms",
+      "bio": "Founder of swarms.ai",
+      "blog": "https://github.com/kyegomez/swarms",
+      "followers": 1976,
+      "following": 123,
+      "public_repos": 425,
+      "public_gists": 0,
+      "created_at": "2022-01-31T15:43:17Z",
+      "updated_at": "2025-08-04T12:30:50Z",
+      "downloaded_at": "2025-08-04T22:33:41.343Z",
+      "social": {
+        "website": "https://github.com/kyegomez/swarms",
+        "twitter": "https://twitter.com/KyeGomezB"
+      },
+      "total_stars": 22016,
+      "total_forks": 2177,
+      "top_languages": [
+        "Python",
+        "Shell",
+        "TypeScript",
+        "TeX",
+        "Makefile"
+      ],
+      "public_repos_count": 100
+    },
+    {
+      "login": "gabrielpconceicao",
+      "name": "Gabriel Conceição",
+      "avatar_url": "https://avatars.githubusercontent.com/u/5131269?v=4",
+      "html_url": "https://github.com/gabrielpconceicao",
+      "location": "Porto",
+      "coordinates": {
+        "lat": 41.1502195,
+        "lng": -8.6103497
+      },
+      "company": "Bydas",
+      "bio": "☕ Full Stack Web developer  Websites development, Web Application developer, Webserver management.\r\nProblem solver, data recovery, technical assistance.",
+      "blog": "http://www.gabrielconceicao.com",
+      "followers": 1976,
+      "following": 31668,
+      "public_repos": 24,
+      "public_gists": 0,
+      "created_at": "2013-07-31T17:29:07Z",
+      "updated_at": "2025-02-05T17:20:33Z",
+      "downloaded_at": "2025-08-04T22:33:43.042Z",
+      "social": {
+        "website": "http://www.gabrielconceicao.com"
+      },
+      "total_stars": 60,
+      "total_forks": 14,
+      "top_languages": [
+        "PHP",
+        "JavaScript",
+        "HTML",
+        "CoffeeScript"
+      ],
+      "public_repos_count": 24
+    },
+    {
+      "login": "benaadams",
+      "name": "Ben {chmark} Adams",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1142958?v=4",
+      "html_url": "https://github.com/benaadams",
+      "location": "Nottingham, UK",
+      "coordinates": {
+        "lat": 52.9534193,
+        "lng": -1.1496461
+      },
+      "company": "@IllyriadGames",
+      "bio": "Co-founder & CTO of @IllyriadGames, 8x Microsoft MVP, contributor to @NethermindEth; prev .NET Foundation Director",
+      "blog": "https://www.ageofascent.com/authors/ben-adams/",
+      "followers": 1974,
+      "following": 62,
+      "public_repos": 206,
+      "public_gists": 89,
+      "created_at": "2011-10-21T11:08:51Z",
+      "updated_at": "2025-07-30T15:53:19Z",
+      "downloaded_at": "2025-08-04T22:33:46.169Z",
+      "social": {
+        "website": "https://www.ageofascent.com/authors/ben-adams/",
+        "twitter": "https://twitter.com/ben_a_adams"
+      },
+      "total_stars": 4063,
+      "total_forks": 235,
+      "top_languages": [
+        "C#",
+        "Python",
+        "Shell",
+        "Solidity",
+        "Kotlin"
+      ],
+      "public_repos_count": 100
+    },
+    {
+      "login": "txthinking",
+      "name": "TxThinking",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1241807?v=4",
+      "html_url": "https://github.com/txthinking",
+      "location": "The Mars",
+      "coordinates": {
+        "lat": 56,
+        "lng": -7
+      },
+      "company": "TxThinking, Inc.",
+      "bio": "Keep it simple, stupid",
+      "blog": "https://www.txthinking.com",
+      "followers": 1973,
+      "following": 0,
+      "public_repos": 37,
+      "public_gists": 10,
+      "created_at": "2011-12-05T13:48:18Z",
+      "updated_at": "2025-06-08T01:38:36Z",
+      "downloaded_at": "2025-08-04T22:33:48.557Z",
+      "social": {
+        "website": "https://www.txthinking.com"
+      },
+      "total_stars": 22602,
+      "total_forks": 4218,
+      "top_languages": [
+        "Go",
+        "C",
+        "Shell",
+        "HTML",
+        "PHP"
+      ],
+      "public_repos_count": 37
+    },
+    {
+      "login": "jpsim",
+      "name": "JP Simard",
+      "avatar_url": "https://avatars.githubusercontent.com/u/474794?v=4",
+      "html_url": "https://github.com/jpsim",
+      "location": "Montreal",
+      "coordinates": {
+        "lat": 45.5031824,
+        "lng": -73.5698065
+      },
+      "company": "Mobile @ Ramp",
+      "bio": null,
+      "blog": "www.jpsim.com",
+      "followers": 1972,
+      "following": 42,
+      "public_repos": 155,
+      "public_gists": 43,
+      "created_at": "2010-11-09T22:03:40Z",
+      "updated_at": "2025-07-18T00:29:12Z",
+      "downloaded_at": "2025-08-04T22:33:50.984Z",
+      "social": {
+        "website": "https://www.jpsim.com"
+      },
+      "total_stars": 8059,
+      "total_forks": 1009,
+      "top_languages": [
+        "Swift",
+        "Objective-C",
+        "JavaScript",
+        "Starlark",
+        "CoffeeScript"
+      ],
+      "public_repos_count": 100
+    },
+    {
+      "login": "captn3m0",
+      "name": "Nemo",
+      "avatar_url": "https://avatars.githubusercontent.com/u/584253?v=4",
+      "html_url": "https://github.com/captn3m0",
+      "location": "Bangalore, India",
+      "coordinates": {
+        "lat": 12.9767936,
+        "lng": 77.590082
+      },
+      "company": null,
+      "bio": "Making and Breaking things, sometimes intentionally",
+      "blog": "https://captnemo.in",
+      "followers": 1972,
+      "following": 798,
+      "public_repos": 446,
+      "public_gists": 83,
+      "created_at": "2011-01-26T08:56:27Z",
+      "updated_at": "2025-07-28T07:01:29Z",
+      "downloaded_at": "2025-08-04T22:33:53.487Z",
+      "social": {
+        "website": "https://captnemo.in",
+        "twitter": "https://twitter.com/captn3m0"
+      },
+      "total_stars": 4530,
+      "total_forks": 512,
+      "top_languages": [
+        "Shell",
+        "Python",
+        "CSS",
+        "HTML",
+        "Dockerfile"
+      ],
+      "public_repos_count": 100
+    },
+    {
+      "login": "emersion",
+      "name": "Simon Ser",
+      "avatar_url": "https://avatars.githubusercontent.com/u/506932?v=4",
+      "html_url": "https://github.com/emersion",
+      "location": "France",
+      "coordinates": {
+        "lat": 46.603354,
+        "lng": 1.8883335
+      },
+      "company": null,
+      "bio": "I work on open-source software. \r\n\r\nMost of my other contributions are on Codeberg and gitlab.freedesktop.org.",
+      "blog": "https://emersion.fr",
+      "followers": 1972,
+      "following": 66,
+      "public_repos": 267,
+      "public_gists": 45,
+      "created_at": "2010-12-02T17:55:50Z",
+      "updated_at": "2025-07-05T11:12:59Z",
+      "downloaded_at": "2025-08-04T22:33:55.467Z",
+      "social": {
+        "website": "https://emersion.fr"
+      },
+      "total_stars": 16085,
+      "total_forks": 1894,
+      "top_languages": [
+        "Go",
+        "C",
+        "JavaScript",
+        "Swift",
+        "CSS"
+      ],
+      "public_repos_count": 100
+    },
+    {
+      "login": "feder-cr",
+      "name": "Federico",
+      "avatar_url": "https://avatars.githubusercontent.com/u/85809106?v=4",
+      "html_url": "https://github.com/feder-cr",
+      "location": "Genoa",
+      "coordinates": {
+        "lat": 44.40726,
+        "lng": 8.9338624
+      },
+      "company": "federico.elia.majo@gmail.com",
+      "bio": "Bachelor's in Computer Science from the University of Genoa.\r\n\r\nPassionate about IoT systems and Artificial Intelligence.",
+      "blog": "",
+      "followers": 1971,
+      "following": 3,
+      "public_repos": 15,
+      "public_gists": 0,
+      "created_at": "2021-06-12T21:46:33Z",
+      "updated_at": "2025-06-01T21:28:15Z",
+      "downloaded_at": "2025-08-04T22:33:59.426Z",
+      "social": {
+        "twitter": "https://twitter.com/FederCr"
+      },
+      "total_stars": 29203,
+      "total_forks": 4572,
+      "top_languages": [
+        "Python",
+        "Jupyter Notebook",
+        "C#",
+        "JavaScript",
+        "Java"
+      ],
+      "public_repos_count": 15
     }
   ],
-  "total_in_batch": 19
+  "total_in_batch": 69
 }

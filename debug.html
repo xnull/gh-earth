@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debug Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css">
+    <style>
+        #debug {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 12px;
+            max-width: 300px;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🌍 GitHub Developers World Map - Debug</h1>
+        </header>
+        
+        <div class="controls">
+            <div class="stats">
+                <span id="developerCount">Loading...</span>
+            </div>
+        </div>
+        
+        <div id="mapContainer" class="view-container">
+            <div id="map"></div>
+        </div>
+        
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Loading developers...</p>
+        </div>
+    </div>
+    
+    <div id="debug">
+        Initializing debug...
+    </div>
+    
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        const debug = document.getElementById('debug');
+        let map;
+        
+        function log(msg) {
+            console.log(msg);
+            debug.innerHTML += '<br>' + msg;
+        }
+        
+        async function initDebugMap() {
+            try {
+                log('Starting debug map...');
+                
+                // Initialize map
+                log('Creating map...');
+                map = L.map('map').setView([20, 0], 2);
+                
+                // Add tiles
+                log('Adding tiles...');
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '© OpenStreetMap contributors',
+                    maxZoom: 18
+                }).addTo(map);
+                
+                log('Map initialized successfully');
+                
+                // Test data loading
+                log('Testing data load...');
+                
+                try {
+                    const indexResponse = await fetch('./data/index.json');
+                    log('Index response: ' + indexResponse.status);
+                    
+                    if (indexResponse.ok) {
+                        const index = await indexResponse.json();
+                        log('Index loaded: ' + index.total_developers + ' developers');
+                        
+                        // Try loading first batch
+                        const batchResponse = await fetch('./data/developers-batch-0.json');
+                        log('Batch 0 response: ' + batchResponse.status);
+                        
+                        if (batchResponse.ok) {
+                            const batch = await batchResponse.json();
+                            log('Batch 0 loaded: ' + batch.developers.length + ' developers');
+                            
+                            // Add some test markers
+                            let markerCount = 0;
+                            for (const dev of batch.developers.slice(0, 10)) {
+                                if (dev.coordinates) {
+                                    L.marker([dev.coordinates.lat, dev.coordinates.lng])
+                                        .addTo(map)
+                                        .bindPopup(dev.name || dev.login);
+                                    markerCount++;
+                                }
+                            }
+                            log('Added ' + markerCount + ' test markers');
+                            
+                            document.getElementById('developerCount').textContent = 
+                                markerCount + ' developers shown';
+                                
+                        } else {
+                            log('Failed to load batch: ' + batchResponse.statusText);
+                        }
+                    } else {
+                        log('Failed to load index: ' + indexResponse.statusText);
+                        
+                        // Try fallback
+                        log('Trying fallback data...');
+                        const fallbackResponse = await fetch('./developers-data.json');
+                        log('Fallback response: ' + fallbackResponse.status);
+                        
+                        if (fallbackResponse.ok) {
+                            const data = await fallbackResponse.json();
+                            log('Fallback loaded: ' + (data.developers ? data.developers.length : 0) + ' developers');
+                        }
+                    }
+                } catch (dataError) {
+                    log('Data loading error: ' + dataError.message);
+                }
+                
+            } catch (error) {
+                log('Debug error: ' + error.message);
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', initDebugMap);
+    </script>
+</body>
+</html>

@@ -24,8 +24,12 @@
     "followers:followers:2000..5000": {
       "processed_at": "2025-08-04T21:41:10.548Z",
       "developers_found": 736
+    },
+    "followers:followers:1000..2000": {
+      "processed_at": "2025-08-04T22:33:59.426Z",
+      "developers_found": 50
     }
   },
-  "totalDevelopers": 1482,
-  "lastUpdate": "2025-08-04T21:41:10.559Z"
+  "totalDevelopers": 1532,
+  "lastUpdate": "2025-08-04T22:33:59.427Z"
 }

@@ -135,6 +135,7 @@ const headers = {
 const CONFIG = {
     developersPerFile: 500,           // Max developers per JSON file
     maxDevelopersPerSearch: 100,      // Max developers to fetch per search query
+    maxDevelopersPerRun: 50,          // Max developers to process per script run (CHUNKED)
     requestDelayMs: 50,               // Delay between requests (ms)
     searchDelayMs: 1000,              // Delay between search queries (ms)
     dataDir: './data',                // Directory to store JSON files
@@ -415,7 +416,7 @@ async function checkRateLimit() {
 }
 
 // Fetch developers for a search query with pagination
-async function fetchDevelopersForQuery(query, existingLogins, maxPages = CONFIG.maxPages) {
+async function fetchDevelopersForQuery(query, existingLogins, maxPages = CONFIG.maxPages, maxDevelopersRemaining = CONFIG.maxDevelopersPerRun) {
     const developers = [];
     let page = 1;
     
@@ -491,6 +492,12 @@ async function fetchDevelopersForQuery(query, existingLogins, maxPages = CONFIG.
                         const socialStr = Object.keys(social).length > 0 ? `social: ${Object.keys(social).join(', ')}` : 'no social';
                         console.log(`      ✅ Added ${userDetails.login} (${userDetails.followers} followers, ⭐${stats.total_stars} stars, ${socialStr}) [${coordsStr}]`);
                         
+                        // Check if we've reached the limit for this run
+                        if (developers.length >= maxDevelopersRemaining) {
+                            console.log(`      🎯 Reached limit of ${maxDevelopersRemaining} developers for this query, stopping...`);
+                            return developers;
+                        }
+                        
                         // Add small delay between requests to be respectful
                         await delay(300);
                     } else {
@@ -525,7 +532,8 @@ async function fetchDevelopersForQuery(query, existingLogins, maxPages = CONFIG.
 
 // Main download function
 async function downloadDevelopers() {
-    console.log('🚀 Starting incremental developer data download...');
+    console.log('🚀 Starting chunked developer data download...');
+    console.log(`🎯 Processing limit: ${CONFIG.maxDevelopersPerRun} developers per run`);
     
     // Check rate limit
     const { remaining } = await checkRateLimit();
@@ -544,6 +552,9 @@ async function downloadDevelopers() {
     
     console.log(`📁 Working on batch ${progress.currentBatch} (${currentBatch.developers.length}/${CONFIG.developersPerFile} developers)`);
     
+    // Track developers processed in this run
+    let developersProcessedThisRun = 0;
+    
     // Process each search strategy
     for (const strategy of SEARCH_STRATEGIES) {
         console.log(`\n🔍 Processing ${strategy.type} searches...`);
@@ -559,14 +570,17 @@ async function downloadDevelopers() {
             
             console.log(`\n  🔎 Processing: ${query}`);
             
-            const newDevelopers = await fetchDevelopersForQuery(query, existingLogins);
+            const remainingForThisRun = CONFIG.maxDevelopersPerRun - developersProcessedThisRun;
+            const newDevelopers = await fetchDevelopersForQuery(query, existingLogins, CONFIG.maxPages, remainingForThisRun);
             
             // Add to current batch
             currentBatch.developers.push(...newDevelopers);
             progress.totalDevelopers += newDevelopers.length;
+            developersProcessedThisRun += newDevelopers.length;
             
             console.log(`  ✅ Added ${newDevelopers.length} new developers from "${query}"`);
             console.log(`  📈 Batch progress: ${currentBatch.developers.length}/${CONFIG.developersPerFile}`);
+            console.log(`  🎯 Run progress: ${developersProcessedThisRun}/${CONFIG.maxDevelopersPerRun}`);
             
             // Mark query as processed
             progress.processedQueries[queryKey] = {
@@ -576,6 +590,18 @@ async function downloadDevelopers() {
             
             // Save progress
             saveProgress(progress);
+            
+            // Check if we've reached the run limit
+            if (developersProcessedThisRun >= CONFIG.maxDevelopersPerRun) {
+                console.log(`\n🎯 Reached run limit of ${CONFIG.maxDevelopersPerRun} developers, stopping...`);
+                saveBatch(currentBatch);
+                createIndex();
+                console.log(`\n✅ Chunked run complete!`);
+                console.log(`📊 Processed ${developersProcessedThisRun} developers this run`);
+                console.log(`📊 Total developers: ${progress.totalDevelopers}`);
+                console.log(`📁 Current batch: ${progress.currentBatch}`);
+                return;
+            }
             
             // Check if batch is full
             if (currentBatch.developers.length >= CONFIG.developersPerFile) {
