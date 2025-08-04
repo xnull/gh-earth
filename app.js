@@ -304,12 +304,15 @@ async function geocodeLocation(location) {
             }
         }
         
-        // Common location patterns
+        // Extended location mappings for better coverage
         const locationMappings = {
-            'ca': { lat: 37.7749, lng: -122.4194 }, // California -> San Francisco
+            // Countries/Regions
             'usa': { lat: 40.7128, lng: -74.0060 }, // USA -> New York
             'us': { lat: 40.7128, lng: -74.0060 },  // US -> New York
+            'united states': { lat: 40.7128, lng: -74.0060 },
             'uk': { lat: 51.5074, lng: -0.1278 },   // UK -> London
+            'united kingdom': { lat: 51.5074, lng: -0.1278 },
+            'england': { lat: 51.5074, lng: -0.1278 },
             'canada': { lat: 43.6532, lng: -79.3832 }, // Canada -> Toronto
             'brasil': { lat: -23.5505, lng: -46.6333 }, // Brasil -> São Paulo
             'brazil': { lat: -23.5505, lng: -46.6333 }, // Brazil -> São Paulo
@@ -323,9 +326,117 @@ async function geocodeLocation(location) {
             'switzerland': { lat: 47.3769, lng: 8.5417 }, // Switzerland -> Zurich
             'sweden': { lat: 59.3293, lng: 18.0686 }, // Sweden -> Stockholm
             'norway': { lat: 59.9139, lng: 10.7522 }, // Norway -> Oslo
+            'italy': { lat: 41.9028, lng: 12.4964 }, // Italy -> Rome
+            'spain': { lat: 40.4168, lng: -3.7038 }, // Spain -> Madrid
+            'russia': { lat: 55.7558, lng: 37.6173 }, // Russia -> Moscow
+            'poland': { lat: 52.2297, lng: 21.0122 }, // Poland -> Warsaw
+            'south korea': { lat: 37.5665, lng: 126.9780 }, // South Korea -> Seoul
+            'korea': { lat: 37.5665, lng: 126.9780 }, // Korea -> Seoul
+            'israel': { lat: 32.0853, lng: 34.7818 }, // Israel -> Tel Aviv
+            'turkey': { lat: 41.0082, lng: 28.9784 }, // Turkey -> Istanbul
+            'mexico': { lat: 19.4326, lng: -99.1332 }, // Mexico -> Mexico City
+            'argentina': { lat: -34.6037, lng: -58.3816 }, // Argentina -> Buenos Aires
+            'chile': { lat: -33.4489, lng: -70.6693 }, // Chile -> Santiago
+            'colombia': { lat: 4.7110, lng: -74.0721 }, // Colombia -> Bogotá
+            'finland': { lat: 60.1699, lng: 24.9384 }, // Finland -> Helsinki
+            'denmark': { lat: 55.6761, lng: 12.5683 }, // Denmark -> Copenhagen
+            'austria': { lat: 48.2082, lng: 16.3738 }, // Austria -> Vienna
+            'belgium': { lat: 50.8503, lng: 4.3517 }, // Belgium -> Brussels
+            'czechia': { lat: 50.0755, lng: 14.4378 }, // Czechia -> Prague
+            'czech republic': { lat: 50.0755, lng: 14.4378 },
+            'hungary': { lat: 47.4979, lng: 19.0402 }, // Hungary -> Budapest
+            'ukraine': { lat: 50.4501, lng: 30.5234 }, // Ukraine -> Kyiv
+            'romania': { lat: 44.4268, lng: 26.1025 }, // Romania -> Bucharest
+            'bulgaria': { lat: 42.6977, lng: 23.3219 }, // Bulgaria -> Sofia
+            'croatia': { lat: 45.8150, lng: 15.9819 }, // Croatia -> Zagreb
+            'serbia': { lat: 44.7866, lng: 20.4489 }, // Serbia -> Belgrade
+            'greece': { lat: 37.9838, lng: 23.7275 }, // Greece -> Athens
+            'portugal': { lat: 38.7223, lng: -9.1393 }, // Portugal -> Lisbon
+            'ireland': { lat: 53.3498, lng: -6.2603 }, // Ireland -> Dublin
+            'estonia': { lat: 59.4370, lng: 24.7536 }, // Estonia -> Tallinn
+            'latvia': { lat: 56.9496, lng: 24.1052 }, // Latvia -> Riga
+            'lithuania': { lat: 54.6872, lng: 25.2797 }, // Lithuania -> Vilnius
+            'slovenia': { lat: 46.0569, lng: 14.5058 }, // Slovenia -> Ljubljana
+            'slovakia': { lat: 48.1486, lng: 17.1077 }, // Slovakia -> Bratislava
+            'belarus': { lat: 53.9006, lng: 27.5590 }, // Belarus -> Minsk
+            'iceland': { lat: 64.1466, lng: -21.9426 }, // Iceland -> Reykjavik
+            
+            // US States
+            'california': { lat: 37.7749, lng: -122.4194 }, // California -> San Francisco
+            'ca': { lat: 37.7749, lng: -122.4194 },
+            'texas': { lat: 30.2672, lng: -97.7431 }, // Texas -> Austin
+            'tx': { lat: 30.2672, lng: -97.7431 },
+            'new york': { lat: 40.7128, lng: -74.0060 }, // New York -> NYC
+            'ny': { lat: 40.7128, lng: -74.0060 },
+            'florida': { lat: 25.7617, lng: -80.1918 }, // Florida -> Miami
+            'fl': { lat: 25.7617, lng: -80.1918 },
+            'washington': { lat: 47.6062, lng: -122.3321 }, // Washington -> Seattle
+            'wa': { lat: 47.6062, lng: -122.3321 },
+            'massachusetts': { lat: 42.3601, lng: -71.0589 }, // Massachusetts -> Boston
+            'ma': { lat: 42.3601, lng: -71.0589 },
+            'illinois': { lat: 41.8781, lng: -87.6298 }, // Illinois -> Chicago
+            'il': { lat: 41.8781, lng: -87.6298 },
+            'ohio': { lat: 39.9612, lng: -82.9988 }, // Ohio -> Columbus
+            'oh': { lat: 39.9612, lng: -82.9988 },
+            'georgia': { lat: 33.7490, lng: -84.3880 }, // Georgia -> Atlanta
+            'ga': { lat: 33.7490, lng: -84.3880 },
+            'virginia': { lat: 38.9072, lng: -77.0369 }, // Virginia -> Washington DC area
+            'va': { lat: 38.9072, lng: -77.0369 },
+            'north carolina': { lat: 35.7796, lng: -78.6382 }, // North Carolina -> Raleigh
+            'nc': { lat: 35.7796, lng: -78.6382 },
+            'colorado': { lat: 39.7392, lng: -104.9903 }, // Colorado -> Denver
+            'co': { lat: 39.7392, lng: -104.9903 },
+            'oregon': { lat: 45.5152, lng: -122.6784 }, // Oregon -> Portland
+            'or': { lat: 45.5152, lng: -122.6784 },
+            'utah': { lat: 40.7608, lng: -111.8910 }, // Utah -> Salt Lake City
+            'ut': { lat: 40.7608, lng: -111.8910 },
+            'arizona': { lat: 33.4484, lng: -112.0740 }, // Arizona -> Phoenix
+            'az': { lat: 33.4484, lng: -112.0740 },
+            'pennsylvania': { lat: 39.9526, lng: -75.1652 }, // Pennsylvania -> Philadelphia
+            'pa': { lat: 39.9526, lng: -75.1652 },
+            'michigan': { lat: 42.3314, lng: -83.0458 }, // Michigan -> Detroit
+            'mi': { lat: 42.3314, lng: -83.0458 },
+            'minnesota': { lat: 44.9778, lng: -93.2650 }, // Minnesota -> Minneapolis
+            'mn': { lat: 44.9778, lng: -93.2650 },
+            'wisconsin': { lat: 43.0389, lng: -87.9065 }, // Wisconsin -> Milwaukee
+            'wi': { lat: 43.0389, lng: -87.9065 },
+            'tennessee': { lat: 36.1627, lng: -86.7816 }, // Tennessee -> Nashville
+            'tn': { lat: 36.1627, lng: -86.7816 },
+            'missouri': { lat: 39.0458, lng: -76.6413 }, // Missouri -> St. Louis
+            'mo': { lat: 39.0458, lng: -76.6413 },
+            'maryland': { lat: 39.0458, lng: -76.6413 }, // Maryland -> Baltimore
+            'md': { lat: 39.0458, lng: -76.6413 },
+            'connecticut': { lat: 41.7658, lng: -72.6734 }, // Connecticut -> Hartford
+            'ct': { lat: 41.7658, lng: -72.6734 },
+            'new jersey': { lat: 40.0583, lng: -74.4057 }, // New Jersey -> Newark
+            'nj': { lat: 40.0583, lng: -74.4057 },
+            'indiana': { lat: 39.7684, lng: -86.1581 }, // Indiana -> Indianapolis
+            'in': { lat: 39.7684, lng: -86.1581 },
+            
+            // Canadian Provinces
+            'ontario': { lat: 43.6532, lng: -79.3832 }, // Ontario -> Toronto
+            'on': { lat: 43.6532, lng: -79.3832 },
+            'quebec': { lat: 45.5017, lng: -73.5673 }, // Quebec -> Montreal
+            'qc': { lat: 45.5017, lng: -73.5673 },
+            'british columbia': { lat: 49.2827, lng: -123.1207 }, // BC -> Vancouver
+            'bc': { lat: 49.2827, lng: -123.1207 },
+            'alberta': { lat: 51.0447, lng: -114.0719 }, // Alberta -> Calgary
+            'ab': { lat: 51.0447, lng: -114.0719 },
+            
+            // Generic/Virtual locations
             'remote': { lat: 37.7749, lng: -122.4194 }, // Remote -> San Francisco
-            'worldwide': { lat: 37.7749, lng: -122.4194 }, // Worldwide -> San Francisco
-            'everywhere': { lat: 37.7749, lng: -122.4194 } // Everywhere -> San Francisco
+            'worldwide': { lat: 37.7749, lng: -122.4194 },
+            'everywhere': { lat: 37.7749, lng: -122.4194 },
+            'virtual': { lat: 37.7749, lng: -122.4194 },
+            'online': { lat: 37.7749, lng: -122.4194 },
+            'internet': { lat: 37.7749, lng: -122.4194 },
+            'earth': { lat: 37.7749, lng: -122.4194 },
+            'global': { lat: 37.7749, lng: -122.4194 },
+            '127.0.0.1': { lat: 37.7749, lng: -122.4194 }, // Localhost joke -> SF
+            'localhost': { lat: 37.7749, lng: -122.4194 },
+            'undefined': { lat: 37.7749, lng: -122.4194 },
+            'null': { lat: 37.7749, lng: -122.4194 },
+            '~': { lat: 37.7749, lng: -122.4194 } // Home directory joke -> SF
         };
         
         for (const [pattern, coords] of Object.entries(locationMappings)) {
@@ -336,29 +447,108 @@ async function geocodeLocation(location) {
             }
         }
         
-        // If not found in major cities, use Nominatim (with delay)
-        console.log(`🔍 Geocoding "${location}" via Nominatim...`);
-        await delay(200); // Respect rate limits
+        // Skip Nominatim for now as it's slow and often blocked
+        // Instead, use a fallback location based on common patterns
+        console.log(`🔍 Using fallback geocoding for "${location}"`);
         
-        const response = await fetch(
-            `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(location)}&limit=1`
-        );
+        // Try to extract city names from complex locations
+        const cityPatterns = {
+            // Major cities that might be in complex addresses
+            'san francisco': { lat: 37.7749, lng: -122.4194 },
+            'new york': { lat: 40.7128, lng: -74.0060 },
+            'london': { lat: 51.5074, lng: -0.1278 },
+            'berlin': { lat: 52.5200, lng: 13.4050 },
+            'tokyo': { lat: 35.6762, lng: 139.6503 },
+            'paris': { lat: 48.8566, lng: 2.3522 },
+            'seattle': { lat: 47.6062, lng: -122.3321 },
+            'boston': { lat: 42.3601, lng: -71.0589 },
+            'chicago': { lat: 41.8781, lng: -87.6298 },
+            'austin': { lat: 30.2672, lng: -97.7431 },
+            'toronto': { lat: 43.6532, lng: -79.3832 },
+            'vancouver': { lat: 49.2827, lng: -123.1207 },
+            'sydney': { lat: -33.8688, lng: 151.2093 },
+            'melbourne': { lat: -37.8136, lng: 144.9631 },
+            'amsterdam': { lat: 52.3676, lng: 4.9041 },
+            'stockholm': { lat: 59.3293, lng: 18.0686 },
+            'copenhagen': { lat: 55.6761, lng: 12.5683 },
+            'helsinki': { lat: 60.1699, lng: 24.9384 },
+            'oslo': { lat: 59.9139, lng: 10.7522 },
+            'zurich': { lat: 47.3769, lng: 8.5417 },
+            'vienna': { lat: 48.2082, lng: 16.3738 },
+            'madrid': { lat: 40.4168, lng: -3.7038 },
+            'barcelona': { lat: 41.3851, lng: 2.1734 },
+            'rome': { lat: 41.9028, lng: 12.4964 },
+            'milan': { lat: 45.4642, lng: 9.1900 },
+            'munich': { lat: 48.1351, lng: 11.5820 },
+            'hamburg': { lat: 53.5511, lng: 9.9937 },
+            'cologne': { lat: 50.9375, lng: 6.9603 },
+            'frankfurt': { lat: 50.1109, lng: 8.6821 },
+            'moscow': { lat: 55.7558, lng: 37.6173 },
+            'st petersburg': { lat: 59.9311, lng: 30.3609 },
+            'warsaw': { lat: 52.2297, lng: 21.0122 },
+            'prague': { lat: 50.0755, lng: 14.4378 },
+            'budapest': { lat: 47.4979, lng: 19.0402 },
+            'bucharest': { lat: 44.4268, lng: 26.1025 },
+            'sofia': { lat: 42.6977, lng: 23.3219 },
+            'athens': { lat: 37.9838, lng: 23.7275 },
+            'istanbul': { lat: 41.0082, lng: 28.9784 },
+            'ankara': { lat: 39.9334, lng: 32.8597 },
+            'tel aviv': { lat: 32.0853, lng: 34.7818 },
+            'jerusalem': { lat: 31.7683, lng: 35.2137 },
+            'dubai': { lat: 25.2048, lng: 55.2708 },
+            'mumbai': { lat: 19.0760, lng: 72.8777 },
+            'delhi': { lat: 28.7041, lng: 77.1025 },
+            'bangalore': { lat: 12.9716, lng: 77.5946 },
+            'bengaluru': { lat: 12.9716, lng: 77.5946 },
+            'hyderabad': { lat: 17.3850, lng: 78.4867 },
+            'chennai': { lat: 13.0827, lng: 80.2707 },
+            'pune': { lat: 18.5204, lng: 73.8567 },
+            'beijing': { lat: 39.9042, lng: 116.4074 },
+            'shanghai': { lat: 31.2304, lng: 121.4737 },
+            'shenzhen': { lat: 22.5431, lng: 114.0579 },
+            'guangzhou': { lat: 23.1291, lng: 113.2644 },
+            'hangzhou': { lat: 30.2741, lng: 120.1551 },
+            'seoul': { lat: 37.5665, lng: 126.9780 },
+            'busan': { lat: 35.1796, lng: 129.0756 },
+            'singapore': { lat: 1.3521, lng: 103.8198 },
+            'bangkok': { lat: 13.7563, lng: 100.5018 },
+            'jakarta': { lat: -6.2088, lng: 106.8456 },
+            'manila': { lat: 14.5995, lng: 120.9842 },
+            'kuala lumpur': { lat: 3.1390, lng: 101.6869 },
+            'ho chi minh': { lat: 10.8231, lng: 106.6297 },
+            'hanoi': { lat: 21.0285, lng: 105.8542 },
+            'taipei': { lat: 25.0330, lng: 121.5654 },
+            'hong kong': { lat: 22.3193, lng: 114.1694 },
+            'macau': { lat: 22.1987, lng: 113.5439 }
+        };
         
-        if (!response.ok) {
-            throw new Error(`Geocoding API error: ${response.status}`);
+        for (const [cityName, coords] of Object.entries(cityPatterns)) {
+            if (normalizedLocation.includes(cityName)) {
+                console.log(`🎯 Found city "${cityName}" in "${location}"`);
+                locationCache.set(location, coords);
+                return coords;
+            }
         }
         
-        const data = await response.json();
+        // If still no match, use a default location based on likely region
+        let defaultCoords = { lat: 37.7749, lng: -122.4194 }; // Default to SF
         
-        if (data && data.length > 0) {
-            const coords = {
-                lat: parseFloat(data[0].lat),
-                lng: parseFloat(data[0].lon)
-            };
-            console.log(`✅ Geocoded "${location}" to [${coords.lat}, ${coords.lng}]`);
-            locationCache.set(location, coords);
-            return coords;
+        // Try to guess region from location string
+        if (normalizedLocation.includes('europe') || normalizedLocation.includes('eu')) {
+            defaultCoords = { lat: 51.5074, lng: -0.1278 }; // London
+        } else if (normalizedLocation.includes('asia') || normalizedLocation.includes('asian')) {
+            defaultCoords = { lat: 35.6762, lng: 139.6503 }; // Tokyo
+        } else if (normalizedLocation.includes('africa') || normalizedLocation.includes('african')) {
+            defaultCoords = { lat: -26.2041, lng: 28.0473 }; // Johannesburg
+        } else if (normalizedLocation.includes('south america') || normalizedLocation.includes('latin')) {
+            defaultCoords = { lat: -23.5505, lng: -46.6333 }; // São Paulo
+        } else if (normalizedLocation.includes('oceania') || normalizedLocation.includes('pacific')) {
+            defaultCoords = { lat: -33.8688, lng: 151.2093 }; // Sydney
         }
+        
+        console.log(`🌍 Using regional default for "${location}"`);
+        locationCache.set(location, defaultCoords);
+        return defaultCoords;
         
     } catch (error) {
         console.error(`❌ Geocoding error for "${location}":`, error.message);
