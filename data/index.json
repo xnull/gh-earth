@@ -1,12 +1,12 @@
 {
-  "total_developers": 39,
+  "total_developers": 1228,
   "total_batches": 2,
   "batches": [
     {
       "batch": 0,
       "file": "developers-batch-0.json",
-      "count": 20,
-      "generated_at": "2025-08-04T21:24:28.111Z"
+      "count": 1209,
+      "generated_at": "2025-08-04T21:41:10.549Z"
     },
     {
       "batch": 1,
@@ -15,5 +15,5 @@
       "generated_at": "2025-08-04T21:24:28.111Z"
     }
   ],
-  "last_updated": "2025-08-04T21:24:28.111Z"
+  "last_updated": "2025-08-04T21:47:00.554Z"
 }
