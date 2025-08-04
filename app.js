@@ -167,23 +167,28 @@ async function loadInitialData() {
                     });
                     loadedBatches.add(0);
                     console.log(`✅ Loaded ${developers.length} developers from single file`);
+                    console.log('📋 Sample developers:', developers.slice(0, 3).map(d => `${d.login} (${d.location})`));
                     
                     // Force initial geocoding for fallback data
                     console.log('🌍 Starting initial geocoding for fallback data...');
                     let geocoded = 0;
-                    for (const dev of developers.slice(0, 50)) { // Geocode first 50
+                    for (const dev of developers.slice(0, 20)) { // Geocode first 20 for faster testing
                         if (dev.location && !dev.coordinates) {
+                            console.log(`🔍 Geocoding ${dev.login}: ${dev.location}`);
                             const coords = await geocodeLocation(dev.location);
                             if (coords) {
                                 dev.coordinates = coords;
                                 geocoded++;
+                                console.log(`✅ ${dev.login} geocoded to [${coords.lat}, ${coords.lng}]`);
+                            } else {
+                                console.log(`❌ Failed to geocode ${dev.login}: ${dev.location}`);
                             }
-                            if (geocoded % 5 === 0) {
-                                await delay(100); // Small delay every 5 geocoding requests
+                            if (geocoded % 3 === 0) {
+                                await delay(100); // Small delay every 3 geocoding requests
                             }
                         }
                     }
-                    console.log(`✅ Geocoded ${geocoded} locations`);
+                    console.log(`✅ Geocoded ${geocoded}/${developers.slice(0, 20).length} locations`);
                 }
             } catch (e) {
                 console.error('❌ Failed to load fallback data:', e);
@@ -369,7 +374,8 @@ async function updateMapMarkers() {
     const bounds = map.getBounds();
     const developersToShow = getDevelopersInBounds(bounds);
     
-    console.log(`🎯 Updating markers: ${developersToShow.length} developers in view`);
+    console.log(`🎯 Updating markers: ${developersToShow.length}/${allDevelopers.size} developers in view`);
+    console.log('📋 Developers to show:', developersToShow.slice(0, 3).map(d => `${d.login} (${d.location}) coords:${!!d.coordinates}`));
     showLoading(true, `Updating ${developersToShow.length} markers...`);
     
     try {
