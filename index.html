@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Developers World Map</title>
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌍 GitHub Developers World Map</h1>
+            <p>Discover popular GitHub developers around the world</p>
+        </header>
+        
+        <div class="controls">
+            <button id="refreshBtn" class="btn">🔄 Refresh Data</button>
+            <div class="stats">
+                <span id="developerCount">Loading...</span>
+            </div>
+        </div>
+        
+        <div id="map"></div>
+        
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Loading developers...</p>
+        </div>
+    </div>
+    
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <!-- Our JS -->
+    <script src="app.js"></script>
+</body>
+</html>
