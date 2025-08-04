@@ -66,6 +66,22 @@ function debounce(func, wait) {
     };
 }
 
+// Check rate limit status
+async function checkRateLimit() {
+    try {
+        const response = await fetch(`${GITHUB_API_BASE}/rate_limit`);
+        if (response.ok) {
+            const data = await response.json();
+            const remaining = data.rate.remaining;
+            const reset = new Date(data.rate.reset * 1000);
+            return { remaining, reset };
+        }
+    } catch (error) {
+        console.error('Error checking rate limit:', error);
+    }
+    return { remaining: 0, reset: new Date() };
+}
+
 // Handle map movement
 async function onMapMoveEnd() {
     const bounds = map.getBounds();
@@ -145,12 +161,13 @@ async function searchDevelopersByLocation(location) {
         try {
             // Search for users with location matching the search term
             const response = await fetch(
-                `${GITHUB_API_BASE}/search/users?q=location:"${encodeURIComponent(searchTerm)}"+followers:>500&sort=followers&order=desc&per_page=30`
+                `${GITHUB_API_BASE}/search/users?q=location:"${encodeURIComponent(searchTerm)}"+followers:>500&sort=followers&order=desc&per_page=10`
             );
             
             if (!response.ok) {
                 if (response.status === 403) {
                     console.warn('GitHub API rate limit reached');
+                    await handleRateLimitError();
                     break;
                 }
                 throw new Error('Failed to fetch data from GitHub');
@@ -158,22 +175,18 @@ async function searchDevelopersByLocation(location) {
             
             const data = await response.json();
             
-            // Fetch additional details for each developer
-            const developerDetails = await Promise.all(
-                data.items.map(async (dev) => {
-                    try {
-                        const userResponse = await fetch(dev.url);
-                        if (userResponse.ok) {
-                            return await userResponse.json();
-                        }
-                    } catch (error) {
-                        console.error(`Error fetching details for ${dev.login}:`, error);
-                    }
-                    return null;
-                })
-            );
-            
-            const validDevelopers = developerDetails.filter(dev => dev && dev.location);
+            // Process users without fetching additional details to save API calls
+            const validDevelopers = data.items.map(dev => ({
+                login: dev.login,
+                avatar_url: dev.avatar_url,
+                html_url: dev.html_url,
+                name: dev.login,
+                location: searchTerm,
+                followers: 500, // Minimum based on search
+                public_repos: 0,
+                company: null,
+                bio: null
+            }));
             
             // Cache the results
             developerCache.set(searchTerm, validDevelopers);
@@ -200,35 +213,65 @@ async function fetchInitialDevelopers() {
     showLoading(true);
     
     try {
+        // Check rate limit first
+        const { remaining, reset } = await checkRateLimit();
+        if (remaining < 10) {
+            await handleRateLimitError();
+            return;
+        }
+        
         // Search for users with high follower count
         const response = await fetch(
-            `${GITHUB_API_BASE}/search/users?q=followers:>5000&sort=followers&order=desc&per_page=50`
+            `${GITHUB_API_BASE}/search/users?q=followers:>10000&sort=followers&order=desc&per_page=30`
         );
         
         if (!response.ok) {
+            if (response.status === 403) {
+                await handleRateLimitError();
+                return;
+            }
             throw new Error('Failed to fetch data from GitHub');
         }
         
         const data = await response.json();
-        const developers = data.items;
         
-        // Fetch additional details for each developer
-        const developerDetails = await Promise.all(
-            developers.slice(0, 30).map(async (dev) => {
-                try {
-                    const userResponse = await fetch(dev.url);
-                    if (userResponse.ok) {
-                        return await userResponse.json();
+        // Use search results directly without additional API calls
+        const developers = data.items.map(dev => ({
+            login: dev.login,
+            avatar_url: dev.avatar_url,
+            html_url: dev.html_url,
+            name: dev.login,
+            location: 'Worldwide',
+            followers: 10000, // Minimum based on search
+            public_repos: 0,
+            company: null,
+            bio: null
+        }));
+        
+        // Try to fetch locations for just the first 10 developers
+        const developersWithLocation = [];
+        for (let i = 0; i < Math.min(10, developers.length); i++) {
+            try {
+                const userResponse = await fetch(`${GITHUB_API_BASE}/users/${developers[i].login}`);
+                if (userResponse.ok) {
+                    const userData = await userResponse.json();
+                    if (userData.location) {
+                        developersWithLocation.push({
+                            ...developers[i],
+                            ...userData
+                        });
                     }
-                } catch (error) {
-                    console.error(`Error fetching details for ${dev.login}:`, error);
+                } else if (userResponse.status === 403) {
+                    console.warn('Rate limit reached while fetching user details');
+                    break;
                 }
-                return null;
-            })
-        );
+            } catch (error) {
+                console.error(`Error fetching details for ${developers[i].login}:`, error);
+            }
+        }
         
-        // Filter out null results and developers without location
-        const validDevelopers = developerDetails.filter(dev => dev && dev.location);
+        const validDevelopers = developersWithLocation.length > 0 ? developersWithLocation : 
+            developers.slice(0, 10).map(dev => ({ ...dev, location: 'San Francisco' })); // Default location
         
         // Update the count
         document.getElementById('developerCount').textContent = 
@@ -239,10 +282,34 @@ async function fetchInitialDevelopers() {
         
     } catch (error) {
         console.error('Error fetching developers:', error);
-        alert('Failed to fetch GitHub developers. Please try again later.');
+        alert('Failed to fetch GitHub developers. The API rate limit may have been exceeded. Please try again later.');
     } finally {
         showLoading(false);
     }
+}
+
+// Handle rate limit errors
+async function handleRateLimitError() {
+    const { reset } = await checkRateLimit();
+    const minutesUntilReset = Math.ceil((reset - new Date()) / 60000);
+    
+    document.getElementById('developerCount').textContent = 
+        `API rate limit exceeded. Try again in ${minutesUntilReset} minutes.`;
+    
+    // Add some demo data to show the map works
+    const demoData = [
+        { login: 'demo1', name: 'Demo Developer 1', location: 'San Francisco', 
+          avatar_url: 'https://avatars.githubusercontent.com/u/1?v=4',
+          html_url: 'https://github.com', followers: 10000, public_repos: 50 },
+        { login: 'demo2', name: 'Demo Developer 2', location: 'London', 
+          avatar_url: 'https://avatars.githubusercontent.com/u/2?v=4',
+          html_url: 'https://github.com', followers: 8000, public_repos: 40 },
+        { login: 'demo3', name: 'Demo Developer 3', location: 'Tokyo', 
+          avatar_url: 'https://avatars.githubusercontent.com/u/3?v=4',
+          html_url: 'https://github.com', followers: 9000, public_repos: 45 }
+    ];
+    
+    await addDevelopersToMap(demoData, true);
 }
 
 // Geocode location string to coordinates
@@ -323,8 +390,8 @@ function createPopupContent(developer) {
             <h3>${developer.name || developer.login}</h3>
             <div class="info">
                 <span>📍 ${developer.location}</span>
-                <span>👥 ${developer.followers.toLocaleString()} followers</span>
-                <span>📦 ${developer.public_repos} public repos</span>
+                <span>👥 ${developer.followers.toLocaleString()}+ followers</span>
+                ${developer.public_repos > 0 ? `<span>📦 ${developer.public_repos} public repos</span>` : ''}
                 ${developer.company ? `<span>🏢 ${developer.company}</span>` : ''}
                 ${developer.bio ? `<span>📝 ${developer.bio}</span>` : ''}
             </div>
@@ -368,6 +435,7 @@ document.addEventListener('DOMContentLoaded', () => {
     info.innerHTML = `
         <p>💡 Zoom in to load developers in specific regions</p>
         <p>🔍 Pan around to discover developers worldwide</p>
+        <p>⚠️ Limited to 60 API requests/hour without authentication</p>
     `;
     document.querySelector('.header').appendChild(info);
 });
